@@ -15,27 +15,24 @@
             url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070'); 
             background-size: cover; background-position: center; 
         }
+        /* Hide non-active language content */
         [data-lang] { display: none; }
         body.lang-en [data-lang="en"] { display: block; }
         body.lang-en span[data-lang="en"] { display: inline; }
         body.lang-te [data-lang="te"] { display: block; }
         body.lang-te span[data-lang="te"] { display: inline; }
-    </script>
+    </style>
 </head>
-<body class="bg-slate-50 lang-en">
-
-    <nav id="navbar" class="fixed w-full z-50 p-4 transition-all duration-300">
+<body class="bg-slate-50 lang-en"> <nav id="navbar" class="fixed w-full z-50 p-4 transition-all duration-300">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2 font-bold text-xl">
-                <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg">D</div>
+                <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white">D</div>
                 <span id="nav-brand" class="text-white">Divine Parenting</span>
             </div>
-            <div class="flex items-center gap-4">
-                <select id="lang-select" class="bg-white border border-amber-500 rounded px-2 py-1 text-sm font-bold outline-none cursor-pointer">
-                    <option value="en">English</option>
-                    <option value="te">తెలుగు</option>
-                </select>
-            </div>
+            <select id="lang-select" class="bg-white border border-amber-500 rounded px-2 py-1 text-sm font-bold">
+                <option value="en">English</option>
+                <option value="te">తెలుగు</option>
+            </select>
         </div>
     </nav>
 
@@ -49,11 +46,11 @@
                 <span data-lang="en">Tomorrow's Citizens</span>
                 <span data-lang="te">రేపటి పౌరులు</span>
             </h2>
-            <p class="max-w-xl mx-auto mb-10 text-slate-200 text-lg">
+            <p class="max-w-xl mx-auto mb-10 text-slate-200">
                 <span data-lang="en">Raise "Super Kids"—physically strong, mentally sharp, and spiritually awakened.</span>
                 <span data-lang="te">"సూపర్ కిడ్స్" పిల్లలను పెంచడానికి "ధ్యాన మాతృత్వం" ఉద్యమంలో చేరండి.</span>
             </p>
-            <a href="#programs" class="bg-amber-500 px-10 py-4 rounded-full font-bold text-lg hover:bg-amber-600 transition-all inline-block">
+            <a href="#programs" class="bg-amber-500 px-10 py-4 rounded-full font-bold">
                 <span data-lang="en">Explore Programs</span>
                 <span data-lang="te">కార్యక్రమాలు</span>
             </a>
@@ -67,94 +64,61 @@
         </h2>
         <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8">
             <div class="bg-white p-8 rounded-2xl shadow-lg border-t-8 border-amber-500">
-                <i data-lucide="heart" class="w-10 h-10 mx-auto text-amber-500 mb-4"></i>
                 <h3 class="text-xl font-bold">
                     <span data-lang="en">Spiritual Motherhood</span>
                     <span data-lang="te">ధ్యాన మాతృత్వం</span>
                 </h3>
-                <p class="text-slate-600 mt-4">
-                    <span data-lang="en">Creating a divine environment for the unborn child through meditation and Satvic diet.</span>
-                    <span data-lang="te">పుట్టబోయే బిడ్డకు దివ్యమైన వాతావరణాన్ని సృష్టించడం.</span>
+                <p class="mt-4">
+                    <span data-lang="en">Focuses on prenatal care, meditation, and Satvic diet.</span>
+                    <span data-lang="te">గర్భస్థ సంరక్షణ మరియు ధ్యానం.</span>
                 </p>
             </div>
             <div class="bg-white p-8 rounded-2xl shadow-lg border-t-8 border-amber-500">
-                <i data-lucide="baby" class="w-10 h-10 mx-auto text-amber-500 mb-4"></i>
                 <h3 class="text-xl font-bold">
                     <span data-lang="en">Infant Siddha</span>
                     <span data-lang="te">శిశు సిద్ధ కార్యక్రమం</span>
                 </h3>
-                <p class="text-slate-600 mt-4">
-                    <span data-lang="en">Stimulating brain cells and physical milestones like swimming from 15 days old.</span>
-                    <span data-lang="te">మెదడు కణాలను మరియు శారీరక మైలురాళ్లను ప్రేరేపించడం.</span>
+                <p class="mt-4">
+                    <span data-lang="en">Brain cell stimulation and swimming from 15 days old.</span>
+                    <span data-lang="te">మెదడు అభివృద్ధి మరియు ఈత శిక్షణ.</span>
                 </p>
             </div>
             <div class="bg-white p-8 rounded-2xl shadow-lg border-t-8 border-amber-500">
-                <i data-lucide="star" class="w-10 h-10 mx-auto text-amber-500 mb-4"></i>
                 <h3 class="text-xl font-bold">
                     <span data-lang="en">Super Kids</span>
                     <span data-lang="te">సూపర్ కిడ్స్</span>
                 </h3>
-                <p class="text-slate-600 mt-4">
-                    <span data-lang="en">Nurturing intellect and creativity through advanced developmental techniques.</span>
-                    <span data-lang="te">పిల్లలలో మేధస్సు మరియు సృజనాత్మకతను పెంపొందించడం.</span>
+                <p class="mt-4">
+                    <span data-lang="en">Nurturing intellect and creativity in toddlers.</span>
+                    <span data-lang="te">పిల్లలలో మేధస్సు మరియు సృజనాత్మకత.</span>
                 </p>
             </div>
         </div>
     </section>
 
-    <section id="stories" class="py-20 container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-bold mb-12">
-            <span data-lang="en">Success Stories</span>
-            <span data-lang="te">విజయ గాథలు</span>
-        </h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-white p-8 rounded-2xl shadow-md italic border border-slate-100">
-                <p class="mb-4">
-                    <span data-lang="en">"My baby started walking by day 15 and identifying words by month 2!"</span>
-                    <span data-lang="te">"నా బిడ్డ 15 రోజుల్లో నడవడం ప్రారంభించింది!"</span>
-                </p>
-                <p class="font-bold text-slate-900">— S. Rajeshwari</p>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-md italic border border-slate-100">
-                <p class="mb-4">
-                    <span data-lang="en">"Positive affirmations while she slept made her calm; she now reads on her own."</span>
-                    <span data-lang="te">"నిద్రిస్తున్నప్పుడు సానుకూల వాక్యాలు చెప్పడం వల్ల నా కూతురు చాలా ప్రశాంతంగా ఉంది."</span>
-                </p>
-                <p class="font-bold text-slate-900">— K. Santoshi</p>
-            </div>
+    <section id="stories" class="py-20 text-center container mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-12">Success Stories</h2>
+        <div class="grid md:grid-cols-2 gap-8 italic">
+            <div class="bg-white p-6 rounded-xl shadow">"My baby started walking by day 15 and identifying words by month 2!" — S. Rajeshwari</div>
+            <div class="bg-white p-6 rounded-xl shadow">"Positive affirmations while she slept made her calm and she reads on her own." — K. Santoshi</div>
         </div>
     </section>
 
     <footer class="bg-slate-900 text-slate-500 py-10 text-center">
-        <p>© 2026 Divine Parenting Academy. Inspired by Vizag Pyramid Spiritual Society.</p>
+        © 2026 Divine Parenting Academy.
     </footer>
 
     <script>
-        // Language Toggle Logic
-        const langSelect = document.getElementById('lang-select');
-        langSelect.addEventListener('change', (e) => {
+        // Use immediate execution for language switch
+        const select = document.getElementById('lang-select');
+        select.addEventListener('change', (e) => {
             document.body.className = `bg-slate-50 lang-${e.target.value}`;
         });
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            const brand = document.getElementById('nav-brand');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-white', 'shadow-md');
-                navbar.classList.remove('p-4');
-                navbar.classList.add('p-2');
-                brand.classList.replace('text-white', 'text-slate-800');
-            } else {
-                navbar.classList.remove('bg-white', 'shadow-md');
-                navbar.classList.remove('p-2');
-                navbar.classList.add('p-4');
-                brand.classList.replace('text-slate-800', 'text-white');
-            }
-        });
-
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // Safe Icon Initialization
+        window.onload = () => {
+            if (window.lucide) lucide.createIcons();
+        };
     </script>
 </body>
 </html>
