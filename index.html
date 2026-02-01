@@ -24,111 +24,108 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        // Safety: Ensure React is available before defining anything
+        const initApp = () => {
+            const { useState, useEffect } = React;
 
-        const TRANSLATIONS = {
-            en: {
-                nav: { home: 'Home', philosophy: 'Philosophy', programs: 'Programs', stories: 'Stories', contact: 'Contact' },
-                hero: { t1: "Today's Children are", t2: "Tomorrow's Citizens", sub: 'Raise "Super Kids"—physically strong, mentally sharp, and spiritually awakened.', cta: 'Explore Programs' },
-                programs: [
-                    { title: "Spiritual Motherhood", sub: "Prenatal", desc: "Creating a divine environment for the unborn child." },
-                    { title: "Infant Siddha", sub: "0-12 Months", desc: "Stimulating brain cells and physical milestones." },
-                    { title: "Super Kids", sub: "1-4 Years", desc: "Nurturing intellect and creativity in toddlers." }
-                ],
-                stories: [
-                    { text: "My baby started walking by day 15 and identifying words by month 2! The womb-meditation works.", author: "S. Rajeshwari" },
-                    { text: "Using positive affirmations while she slept made her calm and she now reads on her own.", author: "K. Santoshi" },
-                    { text: "My grandchildren are healthy, rarely fall ill, and are such quick learners now.", author: "Atmananda" }
-                ]
-            },
-            te: {
-                nav: { home: 'ముఖపత్రం', philosophy: 'తత్వం', programs: 'కార్యక్రమాలు', stories: 'విజయ గాథలు', contact: 'సంప్రదించండి' },
-                hero: { t1: "నేటి బాలలే", t2: "రేపటి పౌరులు", sub: '"సూపర్ కిడ్స్" పిల్లలను పెంచడానికి "ధ్యాన మాతృత్వం" ఉద్యమంలో చేరండి.', cta: 'చూడండి' },
-                programs: [
-                    { title: "ధ్యాన మాతృత్వం", sub: "గర్భస్థ సంరక్షణ", desc: "పుట్టబోయే బిడ్డకు దివ్యమైన వాతావరణాన్ని సృష్టించడం." },
-                    { title: "శిశు సిద్ధ కార్యక్రమం", sub: "0 – 12 నెలలు", desc: "మెదడు కణాలను మరియు శారీరక మైలురాళ్లను ప్రేరేపించడం." },
-                    { title: "సూపర్ కిడ్స్", sub: "1 – 4 సంవత్సరాలు", desc: "పిల్లలలో మేధస్సు మరియు సృజనాత్మకతను పెంపొందించడం." }
-                ],
-                stories: [
-                    { text: "నా బిడ్డ 15 రోజుల్లో నడవడం మరియు 2 నెలల్లో పదాలను గుర్తించడం ప్రారంభించింది!", author: "S. రాజేశ్వరి" },
-                    { text: "నిద్రిస్తున్నప్పుడు సానుకూల వాక్యాలు చెప్పడం వల్ల నా కూతురు చాలా ప్రశాంతంగా ఉంది.", author: "K. సంతోషి" },
-                    { text: "మా పిల్లలు ఆరోగ్యంగా ఉన్నారు మరియు చాలా త్వరగా నేర్చుకుంటున్నారు.", author: "ఆత్మానంద" }
-                ]
-            }
-        };
+            const TRANSLATIONS = {
+                en: {
+                    nav: { home: 'Home', programs: 'Programs', stories: 'Stories', contact: 'Contact' },
+                    hero: { t1: "Today's Children are", t2: "Tomorrow's Citizens", sub: 'Raise "Super Kids"—physically strong, mentally sharp, and spiritually awakened.', cta: 'Explore Programs' },
+                    programs: [
+                        { title: "Spiritual Motherhood", sub: "Prenatal Care", desc: "Focuses on meditation, Garbha Sanskar, and a Satvic diet." },
+                        { title: "Infant Siddha", sub: "0-12 Months", desc: "Includes flashcards, dots, and swimming from 15 days old." },
+                        { title: "Super Kids", sub: "1-4 Years", desc: "Nurturing intellect and creativity through sleep suggestions." }
+                    ],
+                    stories: [
+                        { text: "My baby started walking by day 15 and identifying words by month 2!", author: "S. Rajeshwari" },
+                        { text: "Positive affirmations while she slept made her calm; she now reads on her own.", author: "K. Santoshi" }
+                    ]
+                },
+                te: {
+                    nav: { home: 'ముఖపత్రం', programs: 'కార్యక్రమాలు', stories: 'విజయ గాథలు', contact: 'సంప్రదించండి' },
+                    hero: { t1: "నేటి బాలలే", t2: "రేపటి పౌరులు", sub: '"సూపర్ కిడ్స్" పిల్లలను పెంచడానికి "ధ్యాన మాతృత్వం" ఉద్యమంలో చేరండి.', cta: 'కార్యక్రమాలు' },
+                    programs: [
+                        { title: "ధ్యాన మాతృత్వం", sub: "గర్భస్థ సంరక్షణ", desc: "ధ్యానం మరియు సాత్విక ఆహారం ద్వారా సంరక్షణ." },
+                        { title: "శిశు సిద్ధ కార్యక్రమం", sub: "0 – 12 నెలలు", desc: "మెదడు అభివృద్ధి మరియు ఈత శిక్షణ." },
+                        { title: "సూపర్ కిడ్స్", sub: "1 – 4 సంవత్సరాలు", desc: "మేధస్సు మరియు సృజనాత్మకత పెంపొందించడం." }
+                    ],
+                    stories: [
+                        { text: "నా బిడ్డ 15 రోజుల్లో నడవడం మరియు 2 నెలల్లో పదాలను గుర్తించడం ప్రారంభించింది!", author: "S. రాజేశ్వరి" },
+                        { text: "నిద్రిస్తున్నప్పుడు సానుకూల వాక్యాలు చెప్పడం వల్ల నా కూతురు చాలా ప్రశాంతంగా ఉంది.", author: "K. సంతోషి" }
+                    ]
+                }
+            };
 
-        const Icon = ({ name }) => {
-            const LucideIcon = lucide[name] || lucide.HelpCircle;
-            return <LucideIcon size={24} className="inline-block text-amber-500" />;
-        };
+            const Icon = ({ name }) => {
+                const LucideIcon = (window.lucide && window.lucide[name]) ? window.lucide[name] : () => <span>•</span>;
+                return <LucideIcon size={24} className="inline-block text-amber-500" />;
+            };
 
-        function App() {
-            const [lang, setLang] = useState('en');
-            const [scrolled, setScrolled] = useState(false);
-            const t = TRANSLATIONS[lang];
+            function App() {
+                const [lang, setLang] = useState('en');
+                const t = TRANSLATIONS[lang];
 
-            useEffect(() => {
-                const handleScroll = () => setScrolled(window.scrollY > 50);
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
-
-            return (
-                <div className="min-h-screen">
-                    <nav className={`fixed w-full z-50 p-4 transition-all ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
-                        <div className="container mx-auto flex justify-between items-center text-sm font-bold">
-                            <div className={`text-xl ${scrolled ? 'text-slate-800' : 'text-white'}`}>Divine Parenting</div>
-                            <select onChange={(e) => setLang(e.target.value)} className="bg-white border border-amber-500 rounded p-1">
+                return (
+                    <div className="min-h-screen">
+                        <nav className="fixed w-full z-50 p-4 bg-white shadow-md flex justify-between items-center">
+                            <div className="text-xl font-bold text-slate-800">Divine Parenting</div>
+                            <select onChange={(e) => setLang(e.target.value)} className="border border-amber-500 rounded p-1 text-sm">
                                 <option value="en">English</option>
                                 <option value="te">తెలుగు</option>
                             </select>
-                        </div>
-                    </nav>
+                        </nav>
 
-                    <section className="h-screen hero-bg flex items-center justify-center text-center text-white px-6">
-                        <div>
-                            <h1 className="text-5xl md:text-7xl font-bold mb-4">{t.hero.t1}</h1>
-                            <h2 className="text-4xl md:text-6xl text-amber-400 mb-8">{t.hero.t2}</h2>
-                            <p className="max-w-xl mx-auto mb-10 text-slate-200">{t.hero.sub}</p>
-                            <button className="bg-amber-500 px-10 py-4 rounded-full font-bold">{t.hero.cta}</button>
-                        </div>
-                    </section>
+                        <section className="h-screen hero-bg flex items-center justify-center text-center text-white px-6">
+                            <div>
+                                <h1 className="text-5xl md:text-7xl font-bold mb-4">{t.hero.t1}</h1>
+                                <h2 className="text-4xl md:text-6xl text-amber-400 mb-8">{t.hero.t2}</h2>
+                                <p className="max-w-xl mx-auto mb-10 text-slate-200">{t.hero.sub}</p>
+                                <button className="bg-amber-500 px-10 py-4 rounded-full font-bold">{t.hero.cta}</button>
+                            </div>
+                        </section>
 
-                    <section id="programs" className="py-20 bg-slate-100 text-center">
-                        <h2 className="text-4xl font-bold mb-12">{t.nav.programs}</h2>
-                        <div className="container mx-auto px-6 grid md:grid-cols-3 gap-8">
-                            {t.programs.map((p, i) => (
-                                <div key={i} className="bg-white p-8 rounded-2xl shadow-lg border-t-8 border-amber-500">
-                                    <Icon name="Heart" />
-                                    <h3 className="text-xl font-bold mt-4">{p.title}</h3>
-                                    <p className="text-amber-600 text-xs font-bold uppercase mb-4">{p.sub}</p>
-                                    <p className="text-slate-600">{p.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
+                        <section id="programs" className="py-20 bg-slate-100 text-center">
+                            <h2 className="text-4xl font-bold mb-12">{t.nav.programs}</h2>
+                            <div className="container mx-auto px-6 grid md:grid-cols-3 gap-8">
+                                {t.programs.map((p, i) => (
+                                    <div key={i} className="bg-white p-8 rounded-2xl shadow-lg border-t-8 border-amber-500">
+                                        <Icon name="Heart" />
+                                        <h3 className="text-xl font-bold mt-4">{p.title}</h3>
+                                        <p className="text-amber-600 text-xs font-bold uppercase mb-4">{p.sub}</p>
+                                        <p className="text-slate-600">{p.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
 
-                    <section id="stories" className="py-20 container mx-auto px-6 text-center">
-                        <h2 className="text-4xl font-bold mb-12">{t.nav.stories}</h2>
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {t.stories.map((s, i) => (
-                                <div key={i} className="bg-white p-8 rounded-2xl shadow-md italic text-slate-700">
-                                    <p className="mb-4">"{s.text}"</p>
-                                    <p className="font-bold text-slate-900">— {s.author}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
+                        <section id="stories" className="py-20 container mx-auto px-6 text-center">
+                            <h2 className="text-4xl font-bold mb-12">{t.nav.stories}</h2>
+                            <div className="grid md:grid-cols-2 gap-8">
+                                {t.stories.map((s, i) => (
+                                    <div key={i} className="bg-white p-8 rounded-2xl shadow-md italic">
+                                        <p className="mb-4">"{s.text}"</p>
+                                        <p className="font-bold">— {s.author}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
 
-                    <footer className="bg-slate-900 text-slate-500 py-10 text-center">
-                        © 2026 Divine Parenting Academy.
-                    </footer>
-                </div>
-            );
-        }
+                        <footer className="bg-slate-900 text-slate-500 py-10 text-center">
+                            © 2026 Divine Parenting Academy. Inspired by Vizag Pyramid Spiritual Society.
+                        </footer>
+                    </div>
+                );
+            }
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<App />);
+        };
+
+        // Final Safety Check: Only run when everything is loaded
+        window.onload = () => {
+            setTimeout(initApp, 500); // 0.5s buffer for CDNs
+        };
     </script>
 </body>
 </html>
