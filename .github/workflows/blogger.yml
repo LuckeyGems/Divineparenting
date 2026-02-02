@@ -1,0 +1,28 @@
+name: Sync Blogger Feed
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch: # Allows manual run
+
+permissions:
+  contents: write # Required to commit files back to the repo
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Fetch Blogger Feed
+        uses: Promptly-Technologies-LLC/rss-fetch-action@v2
+        with:
+          feed_url: https://divineparenting1.blogspot.com/feeds/posts/default?alt=json
+          file_path: ./data/events.json # Saves feed to your repo
+          
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add ./data/events.json
+          git commit -m "Update events from Blogger" || exit 0
+          git push
