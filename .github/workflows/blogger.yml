@@ -16,7 +16,7 @@ jobs:
       - name: Fetch Blogger Feed
         uses: Promptly-Technologies-LLC/rss-fetch-action@v2
         with:
-          feed_url: https://divineparenting1.blogspot.com/feeds/posts/default?alt=json
+          feed_url: http://blog.divineparenting.in/feeds/posts/default?alt=json
           file_path: ./data/events.json # Saves feed to your repo
           
       - name: Commit and Push changes
