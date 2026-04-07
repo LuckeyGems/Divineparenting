@@ -25,7 +25,7 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        .fade-in { animation: fadeIn 0.5s ease-out; }
+        .fade-in { animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
         .modal-content p { margin-bottom: 1em; line-height: 1.6; }
@@ -79,14 +79,14 @@
 
         const BLOG_DOMAIN = 'blog.divineparenting.in'; 
         const BLOG_LABEL_EVENTS = 'Events';
-        const SHOW_EVENT_GALLERY = true; 
+        const SHOW_EVENT_GALLERY = false; 
 
         // Hero Background Wallpapers (Carousel)
         const HERO_WALLPAPERS = [
-            "./Hero/bg1.jpg", 
-            "./Hero/bg2.jpg", 
-            "./Hero/bg3.jpg", 
-            "./Hero/bg4.jpg"  
+            "assets/Hero/bg1.jpg", 
+            "assets/Hero/bg2.jpg", 
+            "assets/Hero/bg3.jpg", 
+            "assets/Hero/bg4.jpg"  
         ];
 
         const HERO_FALLBACKS = [
@@ -98,43 +98,36 @@
 
         const MAIN_VIDEOS = ['rPVQO4R0iPw', 'eRc4U8f2VZA'];
         const YOUTUBE_SHORTS = ['PblbsuRziEc', 'X66al0yMEyk', '6CTFxLb6w5I', '32mELaG-fkA', '7lCnleb-7NM'];
-        
-        // Event Web Photos (Mapped to your organized Events folder)
-        const WEB_PHOTOS = [
-            './Events/Event1_date_02082026.jpg', 
-            './Events/Event2_date_02082026.jpg', 
-            './Events/Event3_date_02082026.jpg'
-        ];
 
         // --- NEW: EVENT PHOTO GALLERIES (Grouped by Event) ---
         const EVENT_GALLERIES = [
             {
                 id: 'event1',
                 title: 'Full Moon Meditation',
-                thumbnail: './group_event_photos/Event1/Thumb1.jpg',
+                thumbnail: 'assets/group_event_photos/Event1/Thumb1.jpg',
                 photos: [
-                    './group_event_photos/Event1/Photo1.jpg',
-                    './group_event_photos/Event1/Photo2.jpg',
-                    './group_event_photos/Event1/Photo3.jpg'
+                    'assets/group_event_photos/Event1/Photo1.jpg',
+                    'assets/group_event_photos/Event1/Photo2.jpg',
+                    'assets/group_event_photos/Event1/Photo3.jpg'
                 ]
             },
             {
                 id: 'event2',
                 title: 'Garbha Sanskar Workshop',
-                thumbnail: './group_event_photos/Event2/Thumb1.jpg',
+                thumbnail: 'assets/group_event_photos/Event2/Thumb1.jpg',
                 photos: [
-                    './group_event_photos/Event2/Photo1.jpg',
-                    './group_event_photos/Event2/Photo2.jpg'
+                    'assets/group_event_photos/Event2/Photo1.jpg',
+                    'assets/group_event_photos/Event2/Photo2.jpg'
                 ]
             },
             {
                 id: 'event3',
                 title: 'Super Kids Talent Day',
-                thumbnail: './group_event_photos/Event3/Thumb1.jpg',
+                thumbnail: 'assets/group_event_photos/Event3/Thumb1.jpg',
                 photos: [
-                    './group_event_photos/Event3/Photo1.jpg',
-                    './group_event_photos/Event3/Photo2.jpg',
-                    './group_event_photos/Event3/Photo3.jpg'
+                    'assets/group_event_photos/Event3/Photo1.jpg',
+                    'assets/group_event_photos/Event3/Photo2.jpg',
+                    'assets/group_event_photos/Event3/Photo3.jpg'
                 ]
             }
         ];
@@ -157,18 +150,19 @@
 
         // --- DATA STRUCTURES (REPLACE IMAGE URLs HERE) ---
         const BOOKS_DATA = [
-            { id: 'superKids', image: './Books/Book1_DyanaMatrutvam.jpg', pdfUrl: './files/Dhyana_Matrutvam_Telugu.pdf' },
-            { id: 'dhyanaMatruthvam', image: './Books/Book2_DivyaMatrutvam.jpg', pdfUrl: './files/Divya_Matrutvam.pdf' },
-            { id: 'studentProblems', image: './Books/Book3_Superkids.jpg', pdfUrl: './files/Super_Kids.pdf' }
+            { id: 'superKids', image: 'assets/Books/Book1_DyanaMatrutvam.jpg', pdfUrl: 'assets/files/Dhyana_Matrutvam_Telugu.pdf' },
+            { id: 'dhyanaMatruthvam', image: 'assets/Books/Book2_DivyaMatrutvam.jpg', pdfUrl: 'assets/files/Divya_Matrutvam.pdf' },
+            { id: 'studentProblems', image: 'assets/Books/Book3_Superkids.jpg', pdfUrl: 'assets/files/Super_Kids.pdf' }
         ];
 
+
         const MENTORS_DATA = [
-            { id: 'patriji', image: './Gurus/Patriji.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Subhash+Patriji' },
-            { id: 'gkSir', image: './Gurus/GK.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Dr.+Gopalakrishna' }, 
-            { id: 'lakshmi', image: './Gurus/slakshmi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=S.+Lakshmi' }, 
-            { id: 'santoshi', image: './Gurus/santoshi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=K.+Santoshi' }, 
-            { id: 'sunitha', image: './Gurus/sunitha.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Sunitha+Karri' }, 
-            { id: 'swathi', image: './Gurus/swathi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Swathi+Rao' } 
+            { id: 'patriji', image: 'assets/Gurus/Patriji.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Subhash+Patriji' },
+            { id: 'gkSir', image: 'assets/Gurus/GK.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Dr.+Gopalakrishna' }, 
+            { id: 'lakshmi', image: 'assets/Gurus/slakshmi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=S.+Lakshmi' }, 
+            { id: 'santoshi', image: 'assets/Gurus/santoshi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=K.+Santoshi' }, 
+            { id: 'sunitha', image: 'assets/Gurus/sunitha.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Sunitha+Karri' }, 
+            { id: 'swathi', image: 'assets/Gurus/swathi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Swathi+Rao' } 
         ];
 
         // Helper to extract YouTube ID from URLs safely
@@ -208,9 +202,9 @@
                     shareLink: 'Copy Event Link',
                     registerBtn: 'Register for this Event',
                     items: [ 
-                        { day: '27', month: 'APR', dateValue: '2026-04-27', title: 'Bali Mom & Baby Expo', loc: 'Bali', time: 'All Day (Apr 27 - May 3)', content: 'Support Meditation & Divine Parenting at the Bali Mom & Baby Expo.', image: './Events/Event1_date_02082026.jpg' }, 
-                        { day: '16', month: 'APR', dateValue: '2026-04-16', title: 'Dhyana Matrutvam 1 Day Workshop', loc: 'Siva Sai Pyramid, Suryapeta', time: '9:00 AM - 5:00 PM', content: 'Awaken your child\'s health, intelligence, and prosperity. Flute by Lakshmi garu. Phone: 9010353435.', image: './Events/Event2_date_02082026.jpg' }, 
-                        { day: nextWed.day, month: nextWed.month, dateValue: nextWed.dateValue, title: 'Divine Parenting Weekly Class', loc: 'Online', time: '9:00 PM - 10:00 PM IST', content: 'A Weekly Class for a Sacred Journey of Family Well-being. Every Wednesday Night.', image: './Events/Event3_date_02082026.jpg' } 
+                        { day: '27', month: 'APR', dateValue: '2026-04-27', title: 'Bali Mom & Baby Expo', loc: 'Bali', time: 'All Day (Apr 27 - May 3)', content: 'Support Meditation & Divine Parenting at the Bali Mom & Baby Expo.', image: 'assets/Events/Event1_date_02082026.jpg' }, 
+                        { day: '16', month: 'APR', dateValue: '2026-04-16', title: 'Dhyana Matrutvam 1 Day Workshop', loc: 'Siva Sai Pyramid, Suryapeta', time: '9:00 AM - 5:00 PM', content: 'Awaken your child\'s health, intelligence, and prosperity. Flute by Lakshmi garu. Phone: 9010353435.', image: 'assets/Events/Event2_date_02082026.jpg' }, 
+                        { day: nextWed.day, month: nextWed.month, dateValue: nextWed.dateValue, title: 'Divine Parenting Weekly Class', loc: 'Online', time: '9:00 PM - 10:00 PM IST', content: 'A Weekly Class for a Sacred Journey of Family Well-being. Every Wednesday Night.', image: 'assets/Events/Event3_date_02082026.jpg' } 
                     ] 
                 },
                 books: { title: 'Books & Resources', subtitle: 'Download our comprehensive guides on Spiritual Parenting.', download: 'Download PDF', items: { superKids: { title: "Super Kids", desc: "A complete guide to Spiritual Motherhood, prenatal care, and early childhood development." }, dhyanaMatruthvam: { title: "Dhyana Matruthvam", desc: "Insights into the profound impact of a mother's meditation on the fetus." }, studentProblems: { title: "Divya Matruthvam", desc: "Practical spiritual solutions and wisdom for conscious parenting." } } },
@@ -266,9 +260,9 @@
                     shareLink: 'లింక్ షేర్ చేయండి',
                     registerBtn: 'ఈ కార్యక్రమానికి నమోదు చేసుకోండి',
                     items: [ 
-                        { day: '27', month: 'APR', dateValue: '2026-04-27', title: 'బాలి మామ్ & బేబీ ఎక్స్‌పో', loc: 'బాలి', time: 'రోజంతా (ఏప్రిల్ 27 - మే 3)', content: 'బాలి మామ్ & బేబీ ఎక్స్‌పోలో ధ్యాన మాతృత్వానికి మద్దతు ఇవ్వండి.', image: './Events/Event1_date_02082026.jpg' }, 
-                        { day: '16', month: 'APR', dateValue: '2026-04-16', title: 'ధ్యాన మాతృత్వం 1 డే వర్క్‌షాప్', loc: 'శివసాయి పిరమిడ్, జమ్మిగడ్డ సూర్యాపేట', time: 'ఉదయం 9:00 - సాయంత్రం 5:00', content: 'మీ పిల్లలని చక్కని ఆరోగ్యం, మేధాశక్తి సంపన్నులుగా మేలుకొలపండి. ఫ్లూట్: లక్ష్మి గారు. ఫోన్: 9010353435.', image: './Events/Event2_date_02082026.jpg' }, 
-                        { day: nextWed.day, month: nextWed.month, dateValue: nextWed.dateValue, title: 'ధ్యాన మాతృత్వం వీక్లీ క్లాస్', loc: 'ఆన్‌లైన్', time: 'రాత్రి 9:00 - 10:00 IST', content: 'ప్రతి బుధవారం రాత్రి కుటుంబ శ్రేయస్సు కొరకు ఒక పవిత్ర ప్రయాణం.', image: './Events/Event3_date_02082026.jpg' } 
+                        { day: '27', month: 'APR', dateValue: '2026-04-27', title: 'బాలి మామ్ & బేబీ ఎక్స్‌పో', loc: 'బాలి', time: 'రోజంతా (ఏప్రిల్ 27 - మే 3)', content: 'బాలి మామ్ & బేబీ ఎక్స్‌పోలో ధ్యాన మాతృత్వానికి మద్దతు ఇవ్వండి.', image: 'assets/Events/Event1_date_02082026.jpg' }, 
+                        { day: '16', month: 'APR', dateValue: '2026-04-16', title: 'ధ్యాన మాతృత్వం 1 డే వర్క్‌షాప్', loc: 'శివసాయి పిరమిడ్, జమ్మిగడ్డ సూర్యాపేట', time: 'ఉదయం 9:00 - సాయంత్రం 5:00', content: 'మీ పిల్లలని చక్కని ఆరోగ్యం, మేధాశక్తి సంపన్నులుగా మేలుకొలపండి. ఫ్లూట్: లక్ష్మి గారు. ఫోన్: 9010353435.', image: 'assets/Events/Event2_date_02082026.jpg' }, 
+                        { day: nextWed.day, month: nextWed.month, dateValue: nextWed.dateValue, title: 'ధ్యాన మాతృత్వం వీక్లీ క్లాస్', loc: 'ఆన్‌లైన్', time: 'రాత్రి 9:00 - 10:00 IST', content: 'ప్రతి బుధవారం రాత్రి కుటుంబ శ్రేయస్సు కొరకు ఒక పవిత్ర ప్రయాణం.', image: 'assets/Events/Event3_date_02082026.jpg' } 
                     ] 
                 }, 
                 books: { title: 'పుస్తకాలు', subtitle: 'ఆధ్యాత్మిక సంతాన పెంపకంపై మా పుస్తకాలను డౌన్‌లోడ్ చేసుకోండి.', download: 'PDF డౌన్‌లోడ్', items: { superKids: { title: "సూపర్ కిడ్స్", desc: "ఆధ్యాత్మిక మాతృత్వం మరియు శిశు అభివృద్ధికి ఒక సంపూర్ణ మార్గదర్శి." }, dhyanaMatruthvam: { title: "ధ్యాన మాతృత్వం", desc: "గర్భస్థ శిశువుపై తల్లి ధ్యానం యొక్క ప్రభావాన్ని వివరించే పుస్తకం." }, studentProblems: { title: "దివ్య మాతృత్వం", desc: "ఆధ్యాత్మిక సంతాన పెంపకానికి ఆచరణాత్మక పరిష్కారాలు మరియు జ్ఞానం." } } },
@@ -278,7 +272,7 @@
                     subtitle: 'మాస్టర్స్ యొక్క జ్ఞానంతో నడిపించబడుతోంది.', 
                     items: { 
                         patriji: { name: "బ్రహ్మర్షి సుభాష్ పత్రీజీ", role: "వ్యవస్థాపకులు, PSSM", desc: "బ్రహ్మశ్రీ సుభాష్ పత్రీజీ పిరమిడ్ ఆధ్యాత్మిక సంఘాల ఉద్యమం (PSSM) వ్యవస్థాపకులు. లక్షలాది మందికి ధ్యానం మరియు శాఖాహారం యొక్క ప్రాముఖ్యతను బోధించడానికి తన జీవితాన్ని అంకితం చేశారు. సంతాన పెంపకంలో కూడా 'ఆధ్యాత్మిక సత్యం' చాలా అవసరమని పత్రీజీ నొక్కి చెబుతారు. తల్లిదండ్రులు ఆధ్యాత్మిక పద్ధతులను అవలంబించినప్పుడు, వారు తమ పిల్లల కోసం అత్యంత సానుకూలమైన వాతావరణాన్ని సృష్టిస్తారు. ఆనాపానసతి ధ్యానాన్ని దైనందిన జీవితంలో భాగం చేసుకోవడం ద్వారా, అద్భుతమైన 'సూపర్ కిడ్స్' ను పెంచవచ్చని ఆయన బోధిస్తున్నారు." }, 
-                        gkSir: { name: "డా. గోపాలకృష్ణ (GK)", role: "మార్గదర్శి", desc: "డాక్టర్ గోపాలకృష్ణ (జికె సార్) ఆధ్యాత్మిక శాస్త్రం మరియు సంపూర్ణ ఆరోగ్య రంగంలో ఒక అద్భుతమైన మార్గదర్శకులు. పురాతన ఆధ్యాత్మిక జ్ఞానాన్ని ఆధునిక శాస్త్రీయ విధానాలతో ఏకీకృతం చేసే స్పిరిచువల్ టాబ్లెట్స్ భావన వ్యవస్థాపకుడు. బాల్య అభివృద్ధి యొక్క ప్రాముఖ్యతను గుర్తిస్తూ, ఆయన ఇన్ఫాంట్ సిద్ధ ప్రోగ్రామ్ (ISP) ను ప్రవేశపెట్టారు. తన పరిశోధన మరియు వర్క్‌షాప్‌ల ద్వారా, ఎంతో మంది తల్లిదండ్రులకు మార్గదర్శనం చేశారు. గర్భస్థ శిశువుపై తల్లి మానసిక స్థితి యొక్క లోతైన ప్రభావాన్ని ఆయన తన విధానాల ద్వారా వివరించారు." }, 
+                        gkSir: { name: "డా. గోపాలకృష్ణ (GK)", role: "మార్గదర్శి", desc: "డాక్టర్ గోపాలకృష్ణ (జికె సార్) ఆధ్యాత్మిక ശാస్త్రం మరియు సంపూర్ణ ఆరోగ్య రంగంలో ఒక అద్భుతమైన మార్గదర్శకులు. పురాతన ఆధ్యాత్మిక జ్ఞానాన్ని ఆధునిక శాస్త్రీయ విధానాలతో ఏకీకృతం చేసే స్పిరిచువల్ టాబ్లెట్స్ భావన వ్యవస్థాపకుడు. బాల్య అభివృద్ధి యొక్క ప్రాముఖ్యతను గుర్తిస్తూ, ఆయన ఇన్ఫాంట్ సిద్ధ ప్రోగ్రామ్ (ISP) ను ప్రవేశపెట్టారు. తన పరిశోధన మరియు వర్క్‌షాప్‌ల ద్వారా, ఎంతో మంది తల్లిదండ్రులకు మార్గదర్శనం చేశారు. గర్భస్థ శిశువుపై తల్లి మానసిక స్థితి యొక్క లోతైన ప్రభావాన్ని ఆయన తన విధానాల ద్వారా వివరించారు." }, 
                         lakshmi: { name: "సదరం లక్ష్మి", role: "ప్రిన్సిపల్ డైరెక్టర్", desc: "సదరం లక్ష్మి గారు విశాఖపట్నంలోని బ్రహ్మర్షి పిరమిడ్ నుండి పనిచేస్తూ, 28 సంవత్సరాల విశేష అనుభవం ఉన్న ఆధ్యాత్మిక కౌన్సిలర్ మరియు శిక్షకురాలు. డివైన్ పేరెంటింగ్, ఫ్యామిలీ కౌన్సెలింగ్ మరియు ధ్యాన విద్యలో ఆమెకు అపారమైన అనుభవం ఉంది. ఆంధ్ర విశ్వవిద్యాలయం నుండి ఎం.ఫిల్ పూర్తి చేసిన ఆమె, విద్యా జ్ఞానాన్ని ఆధ్యాత్మికతతో అందంగా మిళితం చేశారు. ఆనందో బ్రహ్మ సేవా కార్యక్రమాల్లో చురుకుగా పాల్గొంటూ, ధ్యాన సమయాల్లో అద్భుతంగా వేణువును వాయిస్తారు. ఆమె అంకితభావం ఎన్నో కుటుంబాలకు స్ఫూర్తినిచ్చింది." }, 
                         santoshi: { name: "సంతోషి లక్ష్మి", role: "పేరెంటింగ్ కోచ్", desc: "సంతోషి లక్ష్మి గారు జీనియస్ కిడ్స్ ప్రీస్కూల్ వ్యవస్థాపకురాలు మరియు పేరెంటింగ్ కోచ్. ఆమె 28 సంవత్సరాలకు పైగా ఆనాపానసతి ధ్యానాన్ని ఆచరిస్తున్నారు. ఆంధ్ర విశ్వవిద్యాలయం నుండి MBA, సంగీతంలో బ్యాచిలర్ ఆఫ్ ఆర్ట్స్ మరియు చైల్డ్ సైకాలజీలో పీజీ డిప్లొమా (PGDACC) పూర్తి చేశారు. ఉపాధ్యాయురాలిగా, రిలేషన్‌షిప్ కౌన్సెలర్‌గా మరియు ప్రీస్కూల్ ప్రిన్సిపాల్‌గా సుదీర్ఘ అనుభవం ఉంది. 2008లో తన బిడ్డపై ఇన్‌ఫాంట్ ఎడ్యుకేషన్ పద్ధతులను విజయవంతంగా అమలు చేసి, ఆ పద్ధతుల విశిష్టతను నిరూపించారు." }, 
                         sunitha: { name: "సునీత కర్రి", role: "స్పిరిచువల్ ట్రైనర్", desc: "సునీత కర్రి గారు ఆధ్యాత్మిక రంగంలో 13 ఏళ్ల అనుభవం ఉన్న స్పిరిచువల్ టాబ్లెట్స్ వర్క్‌షాప్ ట్రైనర్, సీనియర్ కౌన్సెలర్ మరియు ఆనందో బ్రహ్మ కోఆర్డినేటర్. అనకాపల్లిలోని శ్రీ పార్వతి పిరమిడ్ సెంటర్ ఇన్‌ఛార్జ్‌గా, ఆమె వ్యక్తిగత ఎదుగుదల కార్యక్రమాల్లో చురుకుగా పాల్గొంటున్నారు. ఆధ్యాత్మిక బోధన, ధ్యాన మార్గదర్శకత్వం, కమ్యూనికేషన్ స్కిల్స్‌లో ఆమెకు ఎంతో నైపుణ్యం ఉంది. డివైన్ పేరెంటింగ్ కార్యక్రమంలో ఆమె కీలక పాత్ర పోషిస్తూ, ధ్యాన సమయాల్లో మధురంగా పాటలు పాడుతూ ఎందరికో మానసిక ప్రశాంతతను చేకూర్చుಿದರು." }, 
@@ -301,9 +295,9 @@
                     shareLink: 'लिंक शेयर करें',
                     registerBtn: 'इस आयोजन के लिए पंजीकरण करें',
                     items: [ 
-                        { day: '27', month: 'APR', dateValue: '2026-04-27', title: 'बाली मॉम एंड बेबी एक्सपो', loc: 'बाली', time: 'पूरे दिन (27 अप्रैल - 3 मई)', content: 'बाली एक्सपो में ध्यान और आध्यात्मिक मातृत्व का समर्थन करें।', image: './Events/Event1_date_02082026.jpg' }, 
-                        { day: '16', month: 'APR', dateValue: '2026-04-16', title: 'ध्यान मातृत्वम 1 दिवसीय कार्यशाला', loc: 'शिवसाई पिरामिड, जम्मीगड्डा सूर्यापेट', time: 'सुबह 9:00 - शाम 5:00', content: 'प्राचीन विज्ञान सीखें। लक्ष्मी गारू द्वारा बांसुरी।', image: './Events/Event2_date_02082026.jpg' }, 
-                        { day: nextWed.day, month: nextWed.month, dateValue: nextWed.dateValue, title: 'ध्यान मातृत्वम साप्ताहिक कक्षा', loc: 'ऑनलाइन', time: 'रात 9:00 - 10:00 IST', content: 'पारिवारिक कल्याण के लिए एक साप्ताहिक कक्षा। हर बुधवार।', image: './Events/Event3_date_02082026.jpg' } 
+                        { day: '27', month: 'APR', dateValue: '2026-04-27', title: 'बाली मॉम एंड बेबी एक्सपो', loc: 'बाली', time: 'पूरे दिन (27 अप्रैल - 3 मई)', content: 'बाली एक्सपो में ध्यान और आध्यात्मिक मातृत्व का समर्थन करें।', image: 'assets/Events/Event1_date_02082026.jpg' }, 
+                        { day: '16', month: 'APR', dateValue: '2026-04-16', title: 'ध्यान मातृत्वम 1 दिवसीय कार्यशाला', loc: 'शिवसाई पिरामिड, जम्मीगड्डा सूर्यापेट', time: 'सुबह 9:00 - शाम 5:00', content: 'प्राचीन विज्ञान सीखें। लक्ष्मी गारू द्वारा बांसुरी।', image: 'assets/Events/Event2_date_02082026.jpg' }, 
+                        { day: nextWed.day, month: nextWed.month, dateValue: nextWed.dateValue, title: 'ध्यान मातृत्वम साप्ताहिक कक्षा', loc: 'ऑनलाइन', time: 'रात 9:00 - 10:00 IST', content: 'पारिवारिक कल्याण के लिए एक साप्ताहिक कक्षा। हर बुधवार।', image: 'assets/Events/Event3_date_02082026.jpg' } 
                     ] 
                 }, 
                 books: { title: 'पुस्तकें और संसाधन', subtitle: 'आध्यात्मिक पेरेंटिंग पर हमारी पुस्तकें डाउनलोड करें।', download: 'PDF डाउनलोड', items: { superKids: { title: "सुपर किड्स", desc: "आध्यात्मिक मातृत्व और बचपन के विकास के लिए एक संपूर्ण मार्गदर्शिका।" }, dhyanaMatruthvam: { title: "ध्यान मातृत्वम", desc: "भ्रूण पर माँ के ध्यान के गहरे प्रभाव की जानकारी।" }, studentProblems: { title: "दिव्य मातृत्वम", desc: "जागरूक पेरेंटिंग के लिए व्यावहारिक आध्यात्मिक समाधान।" } } },
@@ -613,7 +607,7 @@
                             <div className="h-full flex flex-col items-center justify-center text-center py-12 fade-in">
                                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6 animate-bounce"><CheckCircle size={40} /></div>
                                 <h3 className="text-2xl font-bold text-slate-900 mb-2">{labels.success}</h3>
-                                <button onClick={handleReset} className="px-8 py-3 bg-slate-900 text-white rounded-xl font-bold mt-4">{labels.close}</button>
+                                <button type="button" onClick={handleReset} className="px-8 py-3 bg-slate-900 text-white rounded-xl font-bold mt-4">{labels.close}</button>
                             </div>
                         ) : (
                             <form key={formKey} action={FORM_CONFIG.formActionUrl} method="POST" target="hidden_iframe" onSubmit={handleSubmit} className={`space-y-6 ${isLoading ? 'opacity-50' : ''}`}>
@@ -727,7 +721,7 @@
             useEffect(() => {
                 const fetchLocalEvents = async () => {
                     try {
-                        const response = await fetch('./data/events.json');
+                        const response = await fetch('assets/data/events.json');
                         const data = await response.json();
                         
                         if (data.feed && data.feed.entry) {
@@ -781,14 +775,14 @@
             }, [allEvents, hasCheckedUrl]);
 
 
-            // --- FETCH YOUTUBE SHORTS (Mocked) ---
+            // --- FETCH YOUTUBE SHORTS ---
             useEffect(() => {
                 const fetchShorts = async () => {
                     const mockShorts = YOUTUBE_SHORTS.map((shortId, i) => ({
                         id: `mock_short_${i}`,
                         title: `Divine Parenting Journey Insight #${i+1}`,
                         videoId: shortId, 
-                        thumbnail: `https://img.youtube.com/vi/${shortId}/maxresdefault.jpg`
+                        thumbnail: `https://img.youtube.com/vi/${shortId}/maxresdefault.jpg` 
                     }));
                     setYoutubeShorts(mockShorts);
                 };
@@ -839,7 +833,7 @@
                             {/* BILINGUAL LOGO WITH CLIPPED IMAGE */}
                             <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection('home')}>
                                 <img 
-                                    src="./logo/logo.png" 
+                                    src="assets/logo/logo.png" 
                                     alt="Divine Parenting Logo" 
                                     className="w-12 h-12 object-cover logo-mask"
                                     onError={(e) => { e.target.onerror = null; e.target.outerHTML = '<div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl font-serif">D</div>'; }}
@@ -962,7 +956,7 @@
 
                                 <div className="relative">
                                     <img 
-                                        src="./section_1/first_mother.jpg" 
+                                        src="assets/section_1/first_mother.jpg" 
                                         alt="Mother and Child" 
                                         className="rounded-3xl shadow-xl w-full h-[400px] object-cover"
                                         onError={(e) => { e.target.onerror = null; e.target.src = 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040'; }}
@@ -999,7 +993,7 @@
                                     <div key={i} className="group bg-slate-50 rounded-2xl overflow-hidden shadow hover:shadow-lg transition-all border border-slate-100">
                                         <div className="h-48 bg-slate-200 relative cursor-pointer" onClick={() => ev.content && setSelectedEventDetails(ev)}>
                                             <img 
-                                                src={ev.image || `./Events/Event${i + 1}_date_02082026.jpg`} 
+                                                src={ev.image || `assets/Events/Event${i + 1}_date_02082026.jpg`} 
                                                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/800x600?text=Event+Poster'; }}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                                                 alt={ev.title}
@@ -1172,17 +1166,6 @@
                                     <button onClick={() => scrollShorts('right')} className="hidden md:flex absolute right-0 top-[40%] -translate-y-1/2 translate-x-4 z-10 bg-white shadow-xl rounded-full p-3 text-slate-800 hover:text-amber-500 hover:scale-110 transition-all border border-slate-200 opacity-0 group-hover:opacity-100 focus:opacity-100">
                                         <ChevronRight size={24} />
                                     </button>
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 className="text-2xl font-bold text-slate-800 mb-8 flex items-center gap-2"><ImageIcon className="text-amber-500"/> {t.media?.photos || TRANSLATIONS.en.media.photos}</h3>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                                    {WEB_PHOTOS.map((img, idx) => (
-                                        <div key={idx} className="aspect-square bg-slate-200 rounded-2xl overflow-hidden shadow-md group cursor-pointer border border-slate-100">
-                                            <img src={img} alt={`Event Photo ${idx+1}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-                                        </div>
-                                    ))}
                                 </div>
                             </div>
                         </div>
