@@ -6,9 +6,28 @@
     <title>Divine Parenting & Super Kids Academy</title>
     <meta name="description" content="Join the movement of Spiritual Motherhood to raise Super Kids.">
     
+    <!-- Google Fonts for Multi-Language Support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&family=Noto+Serif+Devanagari:wght@400;700&family=Noto+Serif+Tamil:wght@400;700&family=Noto+Serif+Telugu:wght@400;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Tailwind Configuration for Custom Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', '"Noto Sans Telugu"', '"Noto Sans Devanagari"', '"Noto Sans Tamil"', 'sans-serif'],
+                        serif: ['"Playfair Display"', '"Noto Serif Telugu"', '"Noto Serif Devanagari"', '"Noto Serif Tamil"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone@7.23.6/babel.min.js"></script>
     
@@ -230,7 +249,7 @@
                 hero: { badge: 'ఆధ్యాత్మిక పిల్లల పెంపకానికి స్వాగతం', title_1: "నేటి బాలలే", title_2: "రేపటి జ్ఞానులు", subtitle: '"సూపర్ కిడ్స్" - శారీరకంగా దృఢమైన, మానసికంగా, ఆధ్యాత్మికంగా, సామాజికంగా పిల్లలను పెంచడానికి "ధ్యాన మాతృత్వం" కార్యక్రమంలో చేరండి.', cta_primary: 'కార్యక్రమాలు', cta_secondary: 'ప్రథమ గురువు' }, 
                 firstGuru: { title: 'తల్లి ప్రథమ గురువు', subtitle: 'సంతాన పెంపకం ఒక కళ మరియు శాస్త్రం.', para1: 'తల్లిదండ్రులు కావడం కేవలం ధర్మం కాదు. అది మానసిక, ఆధ్యాత్మిక ధర్మం.', para2: 'గర్భధారణ అనేది ఎరుకతో జరగాలి. దంపతులు కలిసి ధ్యానం చేసి దివ్యాత్మను ఆహ్వానించాలి.', para3: 'బుద్ధుడి తల్లి మాయాదేవి స్వప్నంలో ఏనుగును చూసినట్లు, దివ్యాత్మ సంకేతం ఇస్తుంది.', para4: 'తన బిడ్డను మహనీయ వ్యక్తిగా తీర్చిదిద్దే బాధ్యత మాతృమూర్తిది.' },
                 programs: { 
-                    title: 'మా పాఠ్య ప్రణాళిక', 
+                    title: 'మా లక్ష్యాలు', 
                     subtitle: 'మూడు దశల ప్రయాణం.', 
                     items: [ 
                         { 
@@ -593,7 +612,7 @@
 
             const eventDateParts = type === 'register' ? parseDate(prefillData.dateValue) : {y: yyyy, m: mm, d: dd};
 
-            const FormLayout = () => (
+            const formContentJSX = (
                 <div className={`bg-white rounded-2xl ${type === 'register' ? '' : 'shadow-xl border border-slate-100'} overflow-hidden h-full flex flex-col`}>
                     {type === 'register' && (
                         <div className="flex justify-between items-center p-6 border-b border-slate-100 bg-slate-50">
@@ -669,12 +688,12 @@
                 return (
                     <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm fade-in" onClick={onClose}>
                         <div className="w-full max-w-lg h-auto max-h-[90vh] flex flex-col shadow-2xl rounded-2xl" onClick={e => e.stopPropagation()}>
-                            <FormLayout />
+                            {formContentJSX}
                         </div>
                     </div>
                 );
             }
-            return <FormLayout />;
+            return formContentJSX;
         };
 
         // --- MAIN APP ---
@@ -839,8 +858,8 @@
                                     onError={(e) => { e.target.onerror = null; e.target.outerHTML = '<div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl font-serif">D</div>'; }}
                                 />
                                 <div className={`flex flex-col leading-tight ${scrolled ? 'text-slate-800' : 'text-white'}`}>
-                                    <span className="text-xl font-bold font-serif tracking-wide">Divine Parenting</span>
-                                    <span className="text-xs font-bold text-amber-500">డివైన్ పేరెంటింగ్</span>
+                                    <span className="text-lg font-bold font-serif tracking-wide">Divine Parenting</span>
+                                    <span className="text-lg font-bold text-amber-500">డివైన్ పేరెంటింగ్</span>
                                 </div>
                             </div>
 
@@ -1168,6 +1187,7 @@
                                     </button>
                                 </div>
                             </div>
+
                         </div>
                     </section>
                     
