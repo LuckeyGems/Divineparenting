@@ -157,8 +157,8 @@
         const MEDITATION_BANNERS = {
             en: 'assets/Meditation/meditation_en.jpg',
             hi: 'assets/Meditation/meditation_hi.jpg',
-            te: 'assets/Meditation/meditation_en.jpg', 
-            ta: 'assets/Meditation/meditation_en.jpg'
+            te: 'assets/Meditation/meditation_te.jpg', 
+            ta: 'assets/Meditation/meditation_ta.jpg'
         };
 
         // --- PROGRAM THUMBNAILS (Displayed below Programs section in a looping Marquee) ---
@@ -1265,14 +1265,14 @@
                     {/* --- MEDITATION BANNER SECTION --- */}
                     <section id="meditation" className="py-12 bg-slate-50 border-t border-slate-100">
                         <div className="container mx-auto px-4">
-                            <div className="max-w-6xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200 relative group cursor-pointer">
+                            <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200 relative group cursor-pointer bg-white">
                                 <img 
                                     src={MEDITATION_BANNERS[lang] || MEDITATION_BANNERS['en']} 
                                     onError={(e) => { e.target.onerror = null; e.target.src='https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?q=80&w=1935&auto=format&fit=crop'; }}
-                                    className="w-full h-auto md:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105" 
+                                    className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]" 
                                     alt="Meditation Banner" 
                                 />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors pointer-events-none"></div>
                             </div>
                         </div>
                     </section>
