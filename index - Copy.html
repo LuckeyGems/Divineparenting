@@ -78,20 +78,6 @@
         .hide-scroll-bar::-webkit-scrollbar {
             display: none; /* Chrome, Safari and Opera */
         }
-
-        /* NEW: Marquee Animation for Images */
-        @keyframes scrollMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .marquee-container {
-            display: flex;
-            width: max-content;
-            animation: scrollMarquee 40s linear infinite;
-        }
-        .marquee-container:hover {
-            animation-play-state: paused;
-        }
     </style>
 </head>
 <body class="bg-slate-50">
@@ -129,47 +115,10 @@
             "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1933&auto=format&fit=crop"
         ];
 
-        // --- NEW: FIRST GURU IMAGES (Looping 3 Images) ---
-        const FIRST_GURU_IMAGES = [
-            "assets/section_1/first_mother_1.jpg",
-            "assets/section_1/first_mother_2.jpg",
-            "assets/section_1/first_mother_3.jpg"
-        ];
-
-        const FIRST_GURU_FALLBACKS = [
-            "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040",
-            "https://images.unsplash.com/photo-1544367563-12123d8966cd?q=80&w=2070",
-            "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?q=80&w=1935"
-        ];
-
-        // --- MAIN VIDEOS ---
-        const MAIN_VIDEOS = [
-            'LwUOxbE3geQ', 
-            'e_kuxkjrxJM', 
-            'x7If8EREMk0', 
-            'QIvSH3zPoY0', 
-            'IiLzsAJv058'
-        ];
-
+        const MAIN_VIDEOS = ['rPVQO4R0iPw', 'eRc4U8f2VZA'];
         const YOUTUBE_SHORTS = ['PblbsuRziEc', 'X66al0yMEyk', '6CTFxLb6w5I', '32mELaG-fkA', '7lCnleb-7NM'];
 
-        // --- MEDITATION SECTION IMAGES (With specific language paths) ---
-        const MEDITATION_BANNERS = {
-            en: 'assets/Meditation/meditation_en.jpg',
-            hi: 'assets/Meditation/meditation_hi.jpg',
-            te: 'assets/Meditation/meditation_en.jpg', 
-            ta: 'assets/Meditation/meditation_en.jpg'
-        };
-
-        // --- PROGRAM THUMBNAILS (Displayed below Programs section in a looping Marquee) ---
-        const PROGRAM_THUMBNAILS = [
-            'assets/Programs/thumb1.jpg',
-            'assets/Programs/thumb2.jpg',
-            'assets/Programs/thumb3.jpg',
-            'assets/Programs/thumb4.jpg'
-        ];
-
-        // --- EVENT PHOTO GALLERIES (Grouped by Event) ---
+        // --- NEW: EVENT PHOTO GALLERIES (Grouped by Event) ---
         const EVENT_GALLERIES = [
             {
                 id: 'event1',
@@ -218,12 +167,13 @@
             }
         };
 
-        // --- DATA STRUCTURES ---
+        // --- DATA STRUCTURES (REPLACE IMAGE URLs HERE) ---
         const BOOKS_DATA = [
             { id: 'superKids', image: 'assets/Books/Book1_DyanaMatrutvam.jpg', pdfUrl: 'assets/files/Dhyana_Matrutvam_Telugu.pdf' },
             { id: 'dhyanaMatruthvam', image: 'assets/Books/Book2_DivyaMatrutvam.jpg', pdfUrl: 'assets/files/Divya_Matrutvam.pdf' },
             { id: 'studentProblems', image: 'assets/Books/Book3_Superkids.jpg', pdfUrl: 'assets/files/Super_Kids.pdf' }
         ];
+
 
         const MENTORS_DATA = [
             { id: 'patriji', image: 'assets/Gurus/Patriji.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Subhash+Patriji' },
@@ -231,10 +181,10 @@
             { id: 'lakshmi', image: 'assets/Gurus/slakshmi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=S.+Lakshmi' }, 
             { id: 'santoshi', image: 'assets/Gurus/santoshi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=K.+Santoshi' }, 
             { id: 'sunitha', image: 'assets/Gurus/sunitha.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Sunitha+Karri' }, 
-            { id: 'swathi', image: 'assets/Gurus/swathi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Swathi+Rao' },
-            { id: 'prasanna', image: 'assets/Gurus/Prasanna.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Prasanna+Laxmi' }
+            { id: 'swathi', image: 'assets/Gurus/swathi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Swathi+Rao' } 
         ];
 
+        // Helper to extract YouTube ID from URLs safely
         const getYouTubeId = (url) => {
             if (!url) return '';
             const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -242,6 +192,7 @@
             return (match && match[2].length === 11) ? match[2] : url;
         };
 
+        // Helper for Weekly Wednesday Class Calculation
         const getNextWednesday = () => {
             const today = new Date();
             const nextWed = new Date(today);
@@ -257,43 +208,12 @@
         const nextWed = getNextWednesday();
 
         // --- TRANSLATIONS ---
-        // Note: The 'home' key is removed from navigation. 'meditation' is added.
         const TRANSLATIONS = {
             en: {
-                nav: { firstGuru: 'First Guru', meditation: 'Meditation', programs: 'Programs', resources: 'Resources', mentors: 'Mentors', contact: 'Contact' },
-                resourcesMenu: { events: 'Events', books: 'Books', media: 'Media & Gallery' },
+                nav: { home: 'Home', firstGuru: 'First Guru', programs: 'Programs', events: 'Events', books: 'Books', media: 'Media', mentors: 'Mentors', contact: 'Contact' },
                 hero: { badge: 'Welcome to the Future of Parenting', title_1: "Today's Children are", title_2: "Tomorrow's Citizens", subtitle: 'Join the movement of Spiritual Motherhood to raise "Super Kids".', cta_primary: 'Explore Programs', cta_secondary: 'First Guru' },
-                firstGuru: { 
-                    title: 'Mother is the First Guru', 
-                    subtitle: 'Parenting is an art, a science, and a spiritual journey.', 
-                    points: [
-                        'Spiritual Motherhood (Dhyana Matrutvam) is communicating with the baby in the womb from the moment of conception and raising the child to be completely healthy and self-realized upon arriving on this earth.',
-                        'The hardest thing in the world is self-realization, and next is parenting. One should marry and have children only after knowing oneself; only then do parents qualify to raise children.',
-                        'Every infant coming from the lap of nature is pure and absolutely pristine. Children raised in the ignorant environment of foolish parents and a foolish society will turn out exactly the same way.',
-                        'So, how should they be raised?',
-                        'Proper plant-based food should be given right from infancy... A mother should never leave the infant alone. Young children should be taught meditation.',
-                        'When dealing with young children, we should treat them with the same respect as we treat adults. We must understand their likes and dislikes and not force our preferences on them.',
-                        'Children ask many questions; if we know the right answers, we should give them, or guide them to someone who knows. We should never pour cold water on their interests.'
-                    ]
-                },
-                programs: { 
-                    title: 'Our Holistic Curriculum', 
-                    subtitle: 'A transformative journey divided into crucial stages.', 
-                    items: [ 
-                        { 
-                            title: "Spiritual Motherhood", 
-                            subtitle: "Prenatal Care", 
-                            desc: "Creating a divine environment for the unborn child.", 
-                            features: ["Meditation", "Garbha Sanskar", "Satvic Diet", "Music Therapy"] 
-                        }, 
-                        { 
-                            title: "Super Kids", 
-                            subtitle: "0 – 4 Years", 
-                            desc: "Stimulating brain cells, physical milestones, and nurturing intellect.", 
-                            features: ["Flashcards", "Smell items", "Touch items", "Different sounds", "Pillow exercises", "Music", "Dot cards", "Chakras book", "Sleep suggestions", "Math cards", "Nature connection", "Vision cards"] 
-                        } 
-                    ] 
-                },
+                firstGuru: { title: 'Mother is the First Guru', subtitle: 'Parenting is a divine science and a spiritual journey.', para1: 'Becoming parents is not just a duty; it is a mental and spiritual dharma. Parents are the energy fields that pave the way for developing good qualities in a child.', para2: 'Conception must happen with awareness. A couple deciding to have a child should meditate together and invite a divine soul.', para3: 'Great beings were invited into this world through conscious parenting. Often, a divine soul gives a sign through a dream before entering the womb.', para4: 'The noble responsibility of shaping a child into a magnificent personality lies with the mother.' },
+                programs: { title: 'Our Holistic Curriculum', subtitle: 'A transformative journey divided into three crucial stages.', items: [ { title: "Spiritual Motherhood", subtitle: "Prenatal Care", desc: "Creating a divine environment for the unborn child.", features: ["Meditation", "Garbha Sanskar", "Satvic Diet"] }, { title: "Infant Siddha Program", subtitle: "0 – 12 Months", desc: "Stimulating brain cells and physical milestones.", features: ["Flashcards", "Tummy time", "Swimming"] }, { title: "Super Kids", subtitle: "1 – 4 Years", desc: "Nurturing intellect and emotional intelligence.", features: ["Math & Encyclopedia", "Emotional Intelligence", "Nature Connection"] } ] },
                 events: { 
                     title: 'Upcoming Events & Workshops', 
                     subtitle: 'Join us for transformative sessions at our centers.', 
@@ -312,13 +232,12 @@
                     title: 'Our Mentors', 
                     subtitle: 'Guided by the wisdom of masters and experienced spiritual scientists.', 
                     items: { 
-                        patriji: { name: "Brahmashri Subhash Patriji", role: "Founder, PSSM", desc: "Brahmashri Subhash Patriji is the guiding light and founder of the Pyramid Spiritual Societies Movement (PSSM). He has dedicated his entire life to spreading the profound science of meditation and vegetarianism to millions of people across the globe. Patriji emphasizes that 'Spiritual Truth' is essential for every aspect of human life, particularly in the realm of parenting. His teachings advocate that when parents embrace spiritual practices, naturally create a highly positive environment for their children." }, 
-                        gkSir: { name: "Dr. Gopalakrishna (GK)", role: "Pioneer, Spiritual Tablets", desc: "Dr. Gopalakrishna, affectionately known as GK Sir, is a visionary pioneer in the field of spiritual science and holistic health. He is the esteemed founder of the Spiritual Tablets concept, which integrates ancient spiritual wisdom with modern scientific approaches to achieve perfect health. He championed the Infant Siddha Program (ISP) to help parents cultivate robust children." }, 
-                        lakshmi: { name: "Sadaram Lakshmi", role: "Principal Director", desc: "Sadaram Lakshmi is the Principal Director and a deeply dedicated spiritual counselor with over 28 years of profound experience in guiding families and individuals. Operating from the Brahmarshi Pyramid in Visakhapatnam, she has been instrumental in spearheading the Super Kids movement and Spiritual Motherhood workshops." }, 
-                        santoshi: { name: "Santhoshi Lakshmi", role: "Parenting Coach", desc: "Santhoshi Lakshmi is a highly experienced Parenting Coach and the Founder of Genius Kidz Preschool. She has been practicing Anapanasati meditation for over 28 years. She successfully applied infant education techniques on her own child back in 2008, proving the immense success of raising a spiritual child." }, 
-                        sunitha: { name: "Sunitha Karri", role: "Spiritual Tablets Trainer", desc: "Sunitha Karri is a devoted Spiritual Tablets Workshop Trainer, Senior Counselor, and Anandho Brahma Co-ordinator with an impressive 13 years of experience in the spiritual domain. Serving as the in-charge of the Sri Parvathi Pyramid Center in Anakapalli, she is deeply involved in personal growth and consciousness programs." }, 
-                        swathi: { name: "Swathi Rao", role: "Psychologist & Therapist", desc: "Swathi Rao is a highly qualified Psychologist, Behavior Therapist, and Career and Mental Health Counselor. Holding an MA in Psychology and a PG Diploma in Child and Adolescent Guidance and Counseling, she brings a deep understanding of human behavior to the Divine Parenting academy." },
-                        prasanna: { name: "Prasanna Laxmi Konduru", role: "Meditation Practitioner & Counselor", desc: "Prasanna Laxmi Konduru holds a B.A (EPP) and has over 20+ years of dedicated practice in Meditation. She is a highly experienced Meditation Practitioner, Motivational Speaker, and Family Counselor. She specializes in guiding individuals and families towards mental, emotional, and spiritual well-being. A renowned author, her publications include 'Super Kids (Guidance during Pregnancy)', 'Students Problems & Solutions', 'Paripoorna Vidya', and 'Dhyana Veedkolu'." }
+                        patriji: { name: "Brahmashri Subhash Patriji", role: "Founder, PSSM", desc: "Brahmashri Subhash Patriji is the guiding light and founder of the Pyramid Spiritual Societies Movement (PSSM). He has dedicated his entire life to spreading the profound science of meditation and vegetarianism to millions of people across the globe. Patriji emphasizes that 'Spiritual Truth' is essential for every aspect of human life, particularly in the realm of parenting. His teachings advocate that when parents embrace spiritual practices, they naturally create a highly positive, conscious, and nurturing environment for their children. By integrating Anapanasati breath meditation into daily routines, he believes that parents can awaken the dormant potential within their children, raising them as enlightened, healthy, and happy 'Super Kids' who will positively transform tomorrow's world." }, 
+                        gkSir: { name: "Dr. Gopalakrishna (GK)", role: "Pioneer, Spiritual Tablets", desc: "Dr. Gopalakrishna, affectionately known as GK Sir, is a visionary pioneer in the field of spiritual science and holistic health. He is the esteemed founder of the Spiritual Tablets concept, which integrates ancient spiritual wisdom with modern scientific approaches to achieve perfect health and well-being. Recognizing the critical importance of early childhood development, he championed the Infant Siddha Program (ISP) to help parents cultivate physically, mentally, and spiritually robust children. Through his extensive research, workshops, and compassionate guidance, GK Sir has empowered countless couples to practice conscious conception and mindful parenting. His transformative methodologies emphasize the deep connection between a mother's state of mind and the fetus, making him a true guiding force for the Divine Parenting initiative." }, 
+                        lakshmi: { name: "Sadaram Lakshmi", role: "Principal Director", desc: "Sadaram Lakshmi is the Principal Director and a deeply dedicated spiritual counselor with over 28 years of profound experience in guiding families and individuals. Operating from the Brahmarshi Pyramid in Visakhapatnam, she has been instrumental in spearheading the Super Kids movement and Spiritual Motherhood workshops. Her extensive expertise spans divine parenting, family and relationship counseling, matrimonial guidance, and meditation education. With a Master of Philosophy from Andhra University, she elegantly combines academic knowledge with spiritual wisdom. Lakshmi actively leads trust activities, participates in Anando Brahma service programs, and beautifully plays the flute during meditation sessions. Her unwavering dedication has transformed countless families, helping them integrate meditation into prenatal care to welcome enlightened souls." }, 
+                        santoshi: { name: "Santhoshi Lakshmi", role: "Parenting Coach", desc: "Santhoshi Lakshmi is a highly experienced Parenting Coach and the Founder of Genius Kidz Preschool. She has been practicing Anapanasati meditation for over 28 years, bringing a wealth of knowledge on vegetarianism, meditation, and spiritual child-rearing. Academically accomplished, she holds a Master of Business Administration from Andhra University, a Bachelor of Arts in Music, and a Post Graduate Diploma in Child and Adolescent Guidance and Counseling (PGDACC). Her professional journey includes serving as a teacher, a relationship counselor, and a dedicated preschool principal. She successfully applied infant education techniques on her own child back in 2008, proving the immense success of raising a spiritual child. She now shares these transformative subconscious training methods with parents everywhere." }, 
+                        sunitha: { name: "Sunitha Karri", role: "Spiritual Tablets Trainer", desc: "Sunitha Karri is a devoted Spiritual Tablets Workshop Trainer, Senior Counselor, and Anandho Brahma Co-ordinator with an impressive 13 years of experience in the spiritual domain. Serving as the in-charge of the Sri Parvathi Pyramid Center in Anakapalli, she is deeply involved in personal growth and consciousness programs. Her diverse skill set includes spiritual teaching, meditation guidance, effective communication, and community trust-building. Sunitha plays a crucial role in the Divine Parenting initiative, actively participating in literature creation, research, and offering online and offline spiritual science services. She is also known for her soulful singing during meditation programs, helping individuals find inner peace and healing. Her dedication makes her a pillar of the spiritual parenting community." }, 
+                        swathi: { name: "Swathi Rao", role: "Psychologist & Therapist", desc: "Swathi Rao is a highly qualified Psychologist, Behavior Therapist, and Career and Mental Health Counselor. Holding an MA in Psychology and a PG Diploma in Child and Adolescent Guidance and Counseling, she brings a deep understanding of human behavior to the Divine Parenting academy. As a Senior Counselor for Spiritual Tablets and an Anandho Brahma Cultural Coordinator, she emphasizes that addressing the physical, mental, social, and spiritual dimensions is essential for holistic well-being. Swathi specializes in mental health awareness, relaxation techniques, and enhancing self-esteem. She works actively with the AP Samagra Siksha Project and as a Behavior Therapist for autistic children. Her core philosophy, 'Spiritual Intellect is the Root, Physical Health is the Fruit,' perfectly aligns with conscious parenting." } 
                     } 
                 },
                 contact: { title: 'Get in Touch', subtitle: 'Register for events or ask us anything.' },
@@ -326,37 +245,30 @@
                 formLabels: { name: 'Your Name', email: 'Email Address', phone: 'Phone Number', message: 'Message', submit: 'Send Message', sending: 'Sending...', success: 'Message Sent Successfully!', event: 'Event', date: 'Date', time: 'Time', regTitle: 'Event Registration', regSub: 'Secure your spot', close: 'Close', confirm: 'Confirm Registration' }
             },
             te: { 
-                nav: { firstGuru: 'ప్రథమ గురువు', meditation: 'ధ్యానం', programs: 'మా లక్ష్యాలు', resources: 'వనరులు', mentors: 'గురువులు', contact: 'సంప్రదించండి' }, 
-                resourcesMenu: { events: 'ఈవెంట్స్', books: 'పుస్తకాలు', media: 'గ్యాలరీ' },
-                hero: { badge: 'ఆధ్యాత్మిక పిల్లల పెంపకానికి స్వాగతం', title_1: "నేటి బాలలే", title_2: "రేపటి జ్ఞానులు", subtitle: '"సూపర్ కిids" - శారీరకంగా దృఢమైన, మానసికంగా, ఆధ్యాత్మికంగా, సామాజికంగా పిల్లలను పెంచడానికి "ధ్యాన మాతృత్వం" కార్యక్రమంలో చేరండి.', cta_primary: 'కార్యక్రమాలు', cta_secondary: 'ప్రథమ గురువు' }, 
-                firstGuru: { 
-                    title: 'తల్లే ప్రథమ గురువు', 
-                    subtitle: 'సంతాన పెంపకం ఒక కళ మరియు శాస్త్రం.', 
-                    points: [
-                        'స్త్రీ గర్భం ధరించిన దగ్గర నుంచి లోపల బిడ్డతో కమ్యూనికేట్ అయి ఈ భూమి మీదకు వచ్చిన ఆ బిడ్డ కంప్లీట్ ఆరోగ్యంతో ఆత్మజ్ఞానిగా పెంచడమే ధ్యానమాతృత్వం..',
-                        'ప్రపంచంలో అతి కష్టమైనది ఆత్మానుభవం, తర్వాత పిల్లల పెంపకం తామెవరో తెలుసుకున్న తర్వాతే పెళ్లి చేసుకోవాలి పిల్లల్ని కనాలి అప్పుడే పిల్లలను పెంచే అర్హత ఆ తల్లిదండ్రులకు ఉంటుంది.',
-                        'ప్రకృతి ఒడిలో నుంచి వచ్చిన ప్రతి శిశువు స్వచ్ఛమైనదే.. అత్యంత శుద్ధమైనదే. మూర్ఖపు తల్లిదండ్రుల మూర్ఖపు సంఘము యొక్క అజ్ఞాన వాతావరణంలో పెరిగిన శిశువులు అలానే ఉంటారు.',
-                        'మరి వారిని ఎలా పెంచాలి?',
-                        'శిశు అవస్థ లో ఉన్నప్పుడే సరియైన ప్లాంట్ బేస్డ్ ఆహారమే ఇవ్వాలి... తల్లి ఎప్పుడు శిశువును వదిలి ఉండరాదు. నూతన బాలబాలికులకు మెడిటేషన్ నేర్పించాలి.',
-                        'చిన్నపిల్లలతో వ్యవహరిస్తున్నప్పుడు పెద్ద వాళ్లతో ఎలా వ్యవహరిస్తామో అలానే వ్యవహరించాలి. వాళ్ళ ఇష్టా ఇష్టాలు తెలుసుకోవాలి మన ఇష్ట ఇష్టాలు వాళ్లపై రుద్దకూడదు.',
-                        'పిల్లలు ఎక్కువగా ప్రశ్నలు వేస్తూ ఉంటారు వాటికి సరియైన సమాధానాలు తెలిస్తే ఇవ్వాలి తమకు తెలియకపోతే తెలిసిన వాళ్ళ దగ్గరకు పంపించాలి. అంతేకానీ వాళ్ళ ఇంట్రెస్ట్ మీద నీళ్లు చల్లకూడదు.'
-                    ]
-                },
+                nav: { home: 'హోమ్', firstGuru: 'ప్రథమ గురువు', programs: 'మా లక్ష్యాలు', events: 'ఈవెంట్స్', books: 'పుస్తకాలు', media: 'గ్యాలరీ', mentors: 'గురువులు', contact: 'సంప్రదించండి' }, 
+                hero: { badge: 'ఆధ్యాత్మిక పిల్లల పెంపకానికి స్వాగతం', title_1: "నేటి బాలలే", title_2: "రేపటి జ్ఞానులు", subtitle: '"సూపర్ కిడ్స్" - శారీరకంగా దృఢమైన, మానసికంగా, ఆధ్యాత్మికంగా, సామాజికంగా పిల్లలను పెంచడానికి "ధ్యాన మాతృత్వం" కార్యక్రమంలో చేరండి.', cta_primary: 'కార్యక్రమాలు', cta_secondary: 'ప్రథమ గురువు' }, 
+                firstGuru: { title: 'తల్లే ప్రథమ గురువు', subtitle: 'సంతాన పెంపకం ఒక కళ మరియు శాస్త్రం.', para1: 'తల్లిదండ్రులు కావడం కేవలం ధర్మం కాదు. అది మానసిక, ఆధ్యాత్మిక ధర్మం.', para2: 'గర్భధారణ అనేది ఎరుకతో జరగాలి. దంపతులు కలిసి ధ్యానం చేసి దివ్యాత్మను ఆహ్వానించాలి.', para3: 'బుద్ధుడి తల్లి మాయాదేవి స్వప్నంలో ఏనుగును చూసినట్లు, దివ్యాత్మ సంకేతం ఇస్తుంది.', para4: 'తన బిడ్డను మహనీయ వ్యక్తిగా తీర్చిదిద్దే బాధ్యత మాతృమూర్తిది.' },
                 programs: { 
                     title: 'మా లక్ష్యాలు', 
-                    subtitle: 'విలువైన దశల ప్రయాణం.', 
+                    subtitle: 'మూడు దశల ప్రయాణం.', 
                     items: [ 
                         { 
                             title: "ధ్యాన మాతృత్వం", 
                             subtitle: "స్త్రీ గర్భం ధరించిన దగ్గర నుండి పాటించ వలసిన నియమాలు", 
                             desc: "దివ్యమైన వాతావరణాన్ని సృష్టించడం.", 
-                            features: ["ప్రతి రోజు ధ్యానం చేయడం", "గర్భ సంస్కారం", "సాత్విక ఆహారం", "సంగీత చికిత్స"] 
+                            features: ["ప్రతి రోజు ధ్యానం చేయడం", "శాఖాహారం తీసుకోవడం", "సంగీతం వినడం", "గురువుల సందేశాలు వినడం", "గర్భంలో ఉన్న శిశువుతో మాట్లాడటం"] 
+                        }, 
+                        { 
+                            title: "శిశు సిద్ధ కార్యక్రమం", 
+                            subtitle: "", 
+                            desc: "మొదటి రోజుల నుండే మెదడు కణాలను మరియు శారీరక శక్తిని పెంపొందించడం.", 
+                            features: ["ఫ్లాష్‌కార్డులు", "స్మెల్ ఐటమ్స్", "టచ్ ఐటమ్స్", "డిఫరెంట్ సౌండ్స్", "పిల్లో ఎక్సర్‌సైజెస్", "సంగీతం"] 
                         }, 
                         { 
                             title: "సూపర్ కిడ్స్", 
-                            subtitle: "0 - 4 సంవత్సరాలు", 
-                            desc: "మొదటి రోజుల నుండే మెదడు కణాలను మరియు సృజనాత్మకతను పెంపొందించడం.", 
-                            features: ["ఫ్లాష్‌కార్డులు", "స్మెల్ ఐటమ్స్", "టచ్ ఐటమ్స్", "డిఫరెంట్ సౌండ్స్", "పిల్లో ఎక్సర్‌సైజెస్", "సంగీతం", "డాట్ కార్డ్స్", "చక్రాస్ బుక్", "నిద్ర సూచనలు", "మ్యాథ్ కార్డ్స్", "ప్రకృతితో అనుసంధానం", "విజన్ కార్డ్స్"] 
+                            subtitle: "", 
+                            desc: "పిల్లలలో మేధస్సు, సృజనాత్మకతను పెంపొందించడం.", 
+                            features: ["డాట్ కార్డ్స్", "చక్రాస్ బుక్", "నిద్ర సూచనలు", "మ్యాథ్ కార్డ్స్", "ప్రకృతితో అనుసంధానం", "విజన్ కార్డ్స్"] 
                         } 
                     ] 
                 }, 
@@ -378,13 +290,12 @@
                     title: 'మా మార్గదర్శకులు', 
                     subtitle: 'మాస్టర్స్ యొక్క జ్ఞానంతో నడిపించబడుతోంది.', 
                     items: { 
-                        patriji: { name: "బ్రహ్మర్షి సుభాష్ పత్రీజీ", role: "వ్యవస్థాపకులు, PSSM", desc: "బ్రహ్మశ్రీ సుభాష్ పత్రీజీ పిరమిడ్ ఆధ్యాత్మిక సంఘాల ఉద్యమం (PSSM) వ్యవస్థాపకులు. లక్షలాది మందికి ధ్యానం మరియు శాఖాహారం యొక్క ప్రాముఖ్యతను బోధించడానికి తన జీవితాన్ని అంకితం చేశారు. సంతాన పెంపకంలో కూడా 'ఆధ్యాత్మిక సత్యం' చాలా అవసరమని పత్రీజీ నొక్కి చెబుతారు." }, 
-                        gkSir: { name: "డా. గోపాలకృష్ణ (GK)", role: "మార్గదర్శి", desc: "డాక్టర్ గోపాలకృష్ణ (జికె సార్) ఆధ్యాత్మిక శాస్త్రం మరియు సంపూర్ణ ఆరోగ్య రంగంలో ఒక అద్భుతమైన మార్గదర్శకులు. పురాతన ఆధ్యాత్మిక జ్ఞానాన్ని ఆధునిక శాస్త్రీయ విధానాలతో ఏకీకృతం చేసే స్పిరిచువల్ టాబ్లెట్స్ భావన వ్యవస్థాపకుడు." }, 
-                        lakshmi: { name: "సదరం లక్ష్మి", role: "ప్రిన్సిపల్ డైరెక్టర్", desc: "సదరం లక్ష్మి గారు విశాఖపట్నంలోని బ్రహ్మర్షి పిరమిడ్ నుండి పనిచేస్తూ, 28 సంవత్సరాల విశేష అనుభవం ఉన్న ఆధ్యాత్మిక కౌన్సిలర్ మరియు శిక్షకురాలు. డివైన్ పేరెంటింగ్, ఫ్యామిలీ కౌన్సెలింగ్ మరియు ధ్యాన విద్యలో ఆమెకు అపారమైన అనుభవం ఉంది." }, 
-                        santoshi: { name: "సంతోషి లక్ష్మి", role: "పేరెంటింగ్ కోచ్", desc: "సంతోషి లక్ష్మి గారు జీనియస్ కిడ్స్ ప్రీస్కూల్ వ్యవస్థాపకురాలు మరియు పేరెంటింగ్ కోచ్. ఆమె 28 సంవత్సరాలకు పైగా ఆనాపానసతి ధ్యానాన్ని ఆచరిస్తున్నారు." }, 
-                        sunitha: { name: "సునీత కర్రి", role: "స్పిరిచువల్ ట్రైనర్", desc: "సునీత కర్రి గారు ఆధ్యాత్మిక రంగంలో 13 ఏళ్ల అనుభవం ఉన్న స్పిరిచువల్ టాబ్లెట్స్ వర్క్‌షాప్ ట్రైనర్, సీనియర్ కౌన్సెలర్ మరియు ఆనందో బ్రహ్మ కోఆర్డినేటర్. అనకాపల్లిలోని శ్రీ పార్వతి పిరమిడ్ సెంటర్ ఇన్‌ఛార్జ్‌గా, ఆమె వ్యక్తిగత ఎదుగుదల కార్యక్రమాల్లో చురుకుగా పాల్గొంటున్నారు." }, 
-                        swathi: { name: "స్వాతి రావు", role: "సైకాలజిస్ట్", desc: "స్వాతి రావు గారు సైకాలజిస్ట్, బిహేవియరల్ థెరపిస్ట్ మరియు మెంటల్ హెల్త్ కౌన్సెలర్. సైకాలజీలో ఎం.ఏ మరియు చైల్డ్ గైడెన్స్‌లో పీజీ డిప్లొమా చేసిన ఆమె, డివైన్ పేరెంటింగ్ అకాడమీలో మానవ ప్రవర్తన గురించి లోతైన అవగాహనను తీసుకువచ్చారు." },
-                        prasanna: { name: "ప్రసన్న లక్ష్మి కొండూరు", role: "మెడిటేషన్ ప్రాక్టీషనర్ & కౌన్సెలర్", desc: "ప్రసన్న లక్ష్మి గారు బి.ఏ (ఈ.పి.పి) చదివారు. ఆమెకు 20 ఏళ్లకు పైగా ధ్యాన సాధనలో అపారమైన అనుభవం ఉంది. మోటివేషనల్ స్పీకర్ మరియు ఫ్యామిలీ కౌన్సెలర్‌గా, మానసిక, భావోద్వేగ మరియు ఆధ్యాత్మిక శ్రేయస్సు వైపు మార్గనిర్దేశం చేయడంలో ఆమె నిపుణులు. ఆమె ప్రచురణలలో 'సూపర్ కిడ్స్', 'విద్యార్థుల సమస్యలు - పరిష్కారాలు', 'పరిపూర్ణ విద్య', మరియు 'ధ్యాన వీడ్కోలు' ఉన్నాయి." }
+                        patriji: { name: "బ్రహ్మర్షి సుభాష్ పత్రీజీ", role: "వ్యవస్థాపకులు, PSSM", desc: "బ్రహ్మశ్రీ సుభాష్ పత్రీజీ పిరమిడ్ ఆధ్యాత్మిక సంఘాల ఉద్యమం (PSSM) వ్యవస్థాపకులు. లక్షలాది మందికి ధ్యానం మరియు శాఖాహారం యొక్క ప్రాముఖ్యతను బోధించడానికి తన జీవితాన్ని అంకితం చేశారు. సంతాన పెంపకంలో కూడా 'ఆధ్యాత్మిక సత్యం' చాలా అవసరమని పత్రీజీ నొక్కి చెబుతారు. తల్లిదండ్రులు ఆధ్యాత్మిక పద్ధతులను అవలంబించినప్పుడు, వారు తమ పిల్లల కోసం అత్యంత సానుకూలమైన వాతావరణాన్ని సృష్టిస్తారు. ఆనాపానసతి ధ్యానాన్ని దైనందిన జీవితంలో భాగం చేసుకోవడం ద్వారా, అద్భుతమైన 'సూపర్ కిడ్స్' ను పెంచవచ్చని ఆయన బోధిస్తున్నారు." }, 
+                        gkSir: { name: "డా. గోపాలకృష్ణ (GK)", role: "మార్గదర్శి", desc: "డాక్టర్ గోపాలకృష్ణ (జికె సార్) ఆధ్యాత్మిక ശാస్త్రం మరియు సంపూర్ణ ఆరోగ్య రంగంలో ఒక అద్భుతమైన మార్గదర్శకులు. పురాతన ఆధ్యాత్మిక జ్ఞానాన్ని ఆధునిక శాస్త్రీయ విధానాలతో ఏకీకృతం చేసే స్పిరిచువల్ టాబ్లెట్స్ భావన వ్యవస్థాపకుడు. బాల్య అభివృద్ధి యొక్క ప్రాముఖ్యతను గుర్తిస్తూ, ఆయన ఇన్ఫాంట్ సిద్ధ ప్రోగ్రామ్ (ISP) ను ప్రవేశపెట్టారు. తన పరిశోధన మరియు వర్క్‌షాప్‌ల ద్వారా, ఎంతో మంది తల్లిదండ్రులకు మార్గదర్శనం చేశారు. గర్భస్థ శిశువుపై తల్లి మానసిక స్థితి యొక్క లోతైన ప్రభావాన్ని ఆయన తన విధానాల ద్వారా వివరించారు." }, 
+                        lakshmi: { name: "సదరం లక్ష్మి", role: "ప్రిన్సిపల్ డైరెక్టర్", desc: "సదరం లక్ష్మి గారు విశాఖపట్నంలోని బ్రహ్మర్షి పిరమిడ్ నుండి పనిచేస్తూ, 28 సంవత్సరాల విశేష అనుభవం ఉన్న ఆధ్యాత్మిక కౌన్సిలర్ మరియు శిక్షకురాలు. డివైన్ పేరెంటింగ్, ఫ్యామిలీ కౌన్సెలింగ్ మరియు ధ్యాన విద్యలో ఆమెకు అపారమైన అనుభవం ఉంది. ఆంధ్ర విశ్వవిద్యాలయం నుండి ఎం.ఫిల్ పూర్తి చేసిన ఆమె, విద్యా జ్ఞానాన్ని ఆధ్యాత్మికతతో అందంగా మిళితం చేశారు. ఆనందో బ్రహ్మ సేవా కార్యక్రమాల్లో చురుకుగా పాల్గొంటూ, ధ్యాన సమయాల్లో అద్భుతంగా వేణువును వాయిస్తారు. ఆమె అంకితభావం ఎన్నో కుటుంబాలకు స్ఫూర్తినిచ్చింది." }, 
+                        santoshi: { name: "సంతోషి లక్ష్మి", role: "పేరెంటింగ్ కోచ్", desc: "సంతోషి లక్ష్మి గారు జీనియస్ కిడ్స్ ప్రీస్కూల్ వ్యవస్థాపకురాలు మరియు పేరెంటింగ్ కోచ్. ఆమె 28 సంవత్సరాలకు పైగా ఆనాపానసతి ధ్యానాన్ని ఆచరిస్తున్నారు. ఆంధ్ర విశ్వవిద్యాలయం నుండి MBA, సంగీతంలో బ్యాచిలర్ ఆఫ్ ఆర్ట్స్ మరియు చైల్డ్ సైకాలజీలో పీజీ డిప్లొమా (PGDACC) పూర్తి చేశారు. ఉపాధ్యాయురాలిగా, రిలేషన్‌షిప్ కౌన్సెలర్‌గా మరియు ప్రీస్కూల్ ప్రిన్సిపాల్‌గా సుదీర్ఘ అనుభవం ఉంది. 2008లో తన బిడ్డపై ఇన్‌ఫాంట్ ఎడ్యుకేషన్ పద్ధతులను విజయవంతంగా అమలు చేసి, ఆ పద్ధతుల విశిష్టతను నిరూపించారు." }, 
+                        sunitha: { name: "సునీత కర్రి", role: "స్పిరిచువల్ ట్రైనర్", desc: "సునీత కర్రి గారు ఆధ్యాత్మిక రంగంలో 13 ఏళ్ల అనుభవం ఉన్న స్పిరిచువల్ టాబ్లెట్స్ వర్క్‌షాప్ ట్రైనర్, సీనియర్ కౌన్సెలర్ మరియు ఆనందో బ్రహ్మ కోఆర్డినేటర్. అనకాపల్లిలోని శ్రీ పార్వతి పిరమిడ్ సెంటర్ ఇన్‌ఛార్జ్‌గా, ఆమె వ్యక్తిగత ఎదుగుదల కార్యక్రమాల్లో చురుకుగా పాల్గొంటున్నారు. ఆధ్యాత్మిక బోధన, ధ్యాన మార్గదర్శకత్వం, కమ్యూనికేషన్ స్కిల్స్‌లో ఆమెకు ఎంతో నైపుణ్యం ఉంది. డివైన్ పేరెంటింగ్ కార్యక్రమంలో ఆమె కీలక పాత్ర పోషిస్తూ, ధ్యాన సమయాల్లో మధురంగా పాటలు పాడుతూ ఎందరికో మానసిక ప్రశాంతతను చేకూర్చుಿದರು." }, 
+                        swathi: { name: "స్వాతి రావు", role: "సైకాలజిస్ట్", desc: "స్వాతి రావు గారు సైకాలజిస్ట్, బిహేవియరల్ థెరపిస్ట్ మరియు మెంటల్ హెల్త్ కౌన్సెలర్. సైకాలజీలో ఎం.ఏ మరియు చైల్డ్ గైడెన్స్‌లో పీజీ డిప్లొమా చేసిన ఆమె, డివైన్ పేరెంటింగ్ అకాడమీలో మానవ ప్రవర్తన గురించి లోతైన అవగాహనను తీసుకువచ్చారు. శారీరక, మానసిక, సామాజిక మరియు ఆధ్యాత్మిక కోణాలను పరిష్కరించడం సంపూర్ణ శ్రేయస్సుకు అవసరమని ఆమె నొక్కి చెబుతారు. ఎ.పి సమగ్ర శిక్షా ప్రాజెక్ట్‌తో పాటు ఆటిజం పిల్లలకు థెరపిస్ట్‌గా చురుకుగా పనిచేస్తున్నారు. 'ఆధ్యాత్మిక బుద్ధే మూలం, శారీరక ఆరోగ్యమే ఫలం' అనేది ఆమె విధానం." } 
                     } 
                 },
                 contact: { title: 'మమ్మల్ని సంప్రదించండి', subtitle: 'నమోదు చేసుకోవడానికి లేదా ప్రశ్నలు అడగడానికి ఫారమ్‌ను పూరించండి.' },
@@ -392,40 +303,10 @@
                 formLabels: { name: 'మీ పేరు', email: 'ఇమెయిల్', phone: 'ఫోన్ నంబర్', message: 'సందేశం', submit: 'పంపండి', sending: 'పంపుతోంది...', success: 'విజయవంతంగా పంపబడింది!', event: 'కార్యక్రమం', date: 'తేదీ', time: 'సమయం', regTitle: 'కార్యక్రమ నమోదు', regSub: 'మీ స్థానాన్ని ఖాయం చేసుకోండి', close: 'మూసివేయు', confirm: 'నమోదు నిర్ధారించండి' } 
             },
             hi: { 
-                nav: { firstGuru: 'प्रथम गुरु', meditation: 'ध्यान', programs: 'कार्यक्रम', resources: 'संसाधन', mentors: 'गुरुजन', contact: 'संपर्क' }, 
-                resourcesMenu: { events: 'आयोजन', books: 'पुस्तकें', media: 'गैलरी' },
+                nav: { home: 'मुख्य पृष्ठ', firstGuru: 'प्रथम गुरु', programs: 'कार्यक्रम', events: 'आयोजन', books: 'पुस्तकें', media: 'गैलरी', mentors: 'गुरुजन', contact: 'संपर्क' }, 
                 hero: { badge: 'पेरेंटिंग के भविष्य में आपका स्वागत है', title_1: "आज के बच्चे,", title_2: "कल के नागरिक", subtitle: '"सुपर किड्स" की परवरिश के लिए "आध्यात्मिक मातृत्व" आंदोलन में शामिल हों।', cta_primary: 'कार्यक्रम', cta_secondary: 'प्रथम गुरु' }, 
-                firstGuru: { 
-                    title: 'माँ पहली गुरु है', 
-                    subtitle: 'पालन-पोषण एक कला और एक विज्ञान है।', 
-                    points: [
-                        'गर्भधारण के क्षण से ही गर्भ में पल रहे बच्चे से संवाद स्थापित करना और इस धरती पर आने के बाद उसे पूर्णतः स्वस्थ एवं आत्मज्ञानी बनाना ही "ध्यान मातृत्व" है।',
-                        'दुनिया में सबसे कठिन कार्य आत्मानुभूति है, और उसके बाद बच्चों का पालन-पोषण। स्वयं को जानने के बाद ही विवाह करना चाहिए और बच्चे पैदा करने चाहिए; तभी माता-पिता बच्चों को पालने के योग्य होते हैं।',
-                        'प्रकृति की गोद से आया हर शिशु शुद्ध है... अत्यंत पवित्र है। मूर्ख माता-पिता और अज्ञानी समाज के माहौल में पले-बढ़े बच्चे वैसे ही बन जाते हैं।',
-                        'तो फिर उनका पालन-पोषण कैसे करें?',
-                        'शिशु अवस्था से ही सही वनस्पति-आधारित (Plant-based) भोजन दिया जाना चाहिए... माँ को कभी भी शिशु को अकेला नहीं छोड़ना चाहिए। छोटे बच्चों को ध्यान सिखाना चाहिए।',
-                        'छोटे बच्चों के साथ हमें वैसा ही व्यवहार करना चाहिए जैसा हम बड़ों के साथ करते हैं। हमें उनकी पसंद-नापसंद जाननी चाहिए और अपनी पसंद उन पर नहीं थोपनी चाहिए।',
-                        'बच्चे अक्सर कई सवाल पूछते हैं; यदि हमें सही उत्तर पता हो तो देना चाहिए, नहीं तो उन्हें ऐसे व्यक्ति के पास भेजना चाहिए जो जानता हो। उनकी जिज्ञासा को कभी दबाना नहीं चाहिए।'
-                    ]
-                },
-                programs: { 
-                    title: 'हमारा समग्र पाठ्यक्रम', 
-                    subtitle: 'विकास के महत्वपूर्ण चरणों में विभाजित।', 
-                    items: [ 
-                        { 
-                            title: "आध्यात्मिक मातृत्व", 
-                            subtitle: "प्रसव पूर्व देखभाल", 
-                            desc: "अजन्मे बच्चे के लिए एक दिव्य वातावरण बनाना।", 
-                            features: ["ध्यान", "गर्भ संस्कार", "सात्विक आहार", "संगीत चिकित्सा"] 
-                        }, 
-                        { 
-                            title: "सुपर किड्स", 
-                            subtitle: "0 – 4 वर्ष", 
-                            desc: "मस्तिष्क की कोशिकाओं और रचनात्मकता को उत्तेजित करना।", 
-                            features: ["फ्लैशकार्ड", "सुगंधित वस्तुएं", "स्पर्श वस्तुएं", "विभिन्न ध्वनियां", "तकिया व्यायाम", "संगीत", "डॉट कार्ड", "चक्र पुस्तक", "नींद के सुझाव", "गणित कार्ड", "प्रकृति से जुड़ाव", "विजन कार्ड"] 
-                        } 
-                    ] 
-                }, 
+                firstGuru: { title: 'माँ पहली गुरु है', subtitle: 'पालन-पोषण एक दिव्य विज्ञान है।', para1: 'माता-पिता वे ऊर्जा क्षेत्र हैं जो एक बच्चे में अच्छे गुण विकसित करते हैं।', para2: 'गर्भधारण जागरूकता के साथ होना चाहिए।', para3: 'दिव्य आत्मा को ध्यान से आमंत्रित किया जाता है।', para4: 'बच्चे को महान व्यक्तित्व में ढालने की जिम्मेदारी माँ की होती है।' },
+                programs: { title: 'हमारा पाठ्यक्रम', subtitle: 'एक परिवर्तनकारी यात्रा।', items: [ { title: "आध्यात्मिक मातृत्व", subtitle: "", desc: "एक दिव्य वातावरण बनाना।", features: ["ध्यान", "गर्भ संस्कार", "सात्विक आहार"] }, { title: "शिशु सिद्ध कार्यक्रम", subtitle: "", desc: "मस्तिष्क की कोशिकाओं को उत्तेजित करना।", features: ["फ्लैशकार्ड", "टमी टाइम", "तैराकी"] }, { title: "सुपर किड्स", subtitle: "", desc: "भावनात्मक बुद्धिमत्ता का पोषण।", features: ["गणित", "भावनात्मक बुद्धिमत्ता", "प्रकृति से जुड़ाव"] } ] }, 
                 events: { 
                     title: 'आगामी कार्यक्रम', 
                     subtitle: 'हमारे सत्रों में शामिल हों।', 
@@ -449,81 +330,19 @@
                         lakshmi: { name: "सदरम लक्ष्मी", role: "प्रधान निदेशक", desc: "सदरम लक्ष्मी 28 वर्षों के गहन अनुभव के साथ एक समर्पित आध्यात्मिक सलाहकार हैं। विशाखापत्तनम में ब्रह्मर्षि पिरामिड से कार्य करते हुए, उन्होंने सुपर किड्स आंदोलन का नेतृत्व किया है। उनकी विशेषज्ञता दिव्य पेरेंटिंग, पारिवारिक परामर्श और ध्यान शिक्षा तक फैली हुई है।" }, 
                         santoshi: { name: "संतोषी लक्ष्मी", role: "पेरेंटिंग कोच", desc: "संतोषी लक्ष्मी एक अत्यधिक अनुभवी पेरेंटिंग कोच और जीनियस किड्स प्रीस्कूल की संस्थापक हैं। वह 28 वर्षों से अधिक समय से आनापानसति ध्यान का अभ्यास कर रही हैं। उन्होंने 2008 में अपने ही बच्चे पर शिशु शिक्षा तकनीकों को सफलतापूर्वक लागू किया।" }, 
                         sunitha: { name: "सुनीता कर्री", role: "स्पिरिचुअल ट्रेनर", desc: "सुनीता कर्री आध्यात्मिक क्षेत्र में 13 वर्षों के प्रभावशाली अनुभव के साथ एक समर्पित आध्यात्मिक टैबलेट कार्यशाला प्रशिक्षक और वरिष्ठ परामर्शदाता हैं। वह अनाकापल्ली में श्री पार्वती पिरामिड केंद्र की प्रभारी हैं। वह ध्यान कार्यक्रमों के दौरान अपने भावपूर्ण गायन के लिए भी जानी जाती हैं।" }, 
-                        swathi: { name: "स्वाति राव", role: "मनोवैज्ञानिक", desc: "स्वाति राव एक उच्च योग्य मनोवैज्ञानिक और व्यवहार चिकित्सक हैं। मनोविज्ञान में एमए और बाल एवं किशोर मार्गदर्शन में पीजी डिप्लोमा के साथ, वह मानव व्यवहार की गहरी समझ लाती हैं। उनका मुख्य दर्शन, 'आध्यात्मिक बुद्धि जड़ है, शारीरिक स्वास्थ्य फल है,' जागरूक पेरेंटिंग के साथ पूरी तरह से मेल खाता है।" },
-                        prasanna: { name: "प्रसन्ना लक्ष्मी कोंडूरु", role: "ध्यान अभ्यासी और परामर्शदाता", desc: "प्रसन्ना लक्ष्मी जी ने बी.ए (ई.पी.पी) किया है और उन्हें ध्यान अभ्यास में 20+ वर्षों का अनुभव है। वह एक अनुभवी ध्यान अभ्यासी, प्रेरक वक्ता और पारिवारिक परामर्शदाता हैं। वह मानसिक, भावनात्मक और आध्यात्मिक भलाई की दिशा में मार्गदर्शन करने में विशेषज्ञ हैं। उनके प्रकाशनों में 'सुपर किड्स', 'छात्रों की समस्याएं और समाधान', 'परिपूर्ण विद्या' और 'ध्यान वीडकोलू' शामिल हैं। वह सभी प्रकार की काउंसलिंग, ध्यान कार्यशालाएं और प्रेरक सत्र प्रदान करती हैं।" }
+                        swathi: { name: "स्वाति राव", role: "मनोवैज्ञानिक", desc: "स्वाति राव एक उच्च योग्य मनोवैज्ञानिक और व्यवहार चिकित्सक हैं। मनोविज्ञान में एमए और बाल एवं किशोर मार्गदर्शन में पीजी डिप्लोमा के साथ, वह मानव व्यवहार की गहरी समझ लाती हैं। उनका मुख्य दर्शन, 'आध्यात्मिक बुद्धि जड़ है, शारीरिक स्वास्थ्य फल है,' जागरूक पेरेंटिंग के साथ पूरी तरह से मेल खाता है।" } 
                     } 
                 },
                 contact: { title: 'संपर्क करें', subtitle: 'पंजीकरण करने के लिए फॉर्म भरें।' },
                 eventGallery: { title: 'कार्यक्रमों की तस्वीरें', subtitle: 'हमारे विभिन्न कार्यक्रमों की यादें।', nextEvent: 'अगला कार्यक्रम', continueToNext: 'अगले कार्यक्रम की तस्वीरें देखने के लिए क्लिक करें' },
                 formLabels: { name: 'आपका नाम', email: 'ईमेल', phone: 'फ़ोन', message: 'संदेश', submit: 'भेजें', sending: 'भेजा जा रहा है...', success: 'सफलतापूर्वक भेजा गया!', event: 'आयोजन', date: 'दिनांक', time: 'समय', regTitle: 'आयोजन पंजीकरण', regSub: 'अपनी जगह सुरक्षित करें', close: 'बंद करें', confirm: 'पंजीकरण की पुष्टि करें' } 
-            },
-            ta: { 
-                nav: { firstGuru: 'முதல் குரு', meditation: 'தியானம்', programs: 'நிகழ்ச்சிகள்', resources: 'வளங்கள்', mentors: 'வழிகாட்டிகள்', contact: 'தொடர்பு' }, 
-                resourcesMenu: { events: 'நிகழ்வுகள்', books: 'புத்தகங்கள்', media: 'ஊடகம்' },
-                hero: { badge: 'பெற்றோர் வளர்ப்பின் எதிர்காலத்திற்கு வரவேற்கிறோம்', title_1: "இன்றைய குழந்தைகள்", title_2: "நாளைய குடிமக்கள்", subtitle: '"சூப்பர் கிட்ஸ்" குழந்தைகளை உருவாக்க "ஆன்மீக தாய்மை" இயக்கத்தில் இணையுங்கள்.', cta_primary: 'நிகழ்ச்சிகள்', cta_secondary: 'முதல் குரு' }, 
-                firstGuru: { 
-                    title: 'தாயே முதல் குரு', 
-                    subtitle: 'குழந்தை வளர்ப்பு என்பது ஒரு கலையும் அறிவியலும் ஆகும்.', 
-                    points: [
-                        'தியான மாத்ருத்வம் (ஆன்மீக தாய்மை) என்பது கருத்தரித்த தருணத்திலிருந்தே கருவிலுள்ள குழந்தையுடன் தொடர்புகொண்டு, இப் பூமியில் பிறந்தவுடன் முழுமையான ஆரோக்கியத்துடனும் ஆத்ம ஞானத்துடனும் வளர்ப்பதாகும்.',
-                        'உலகில் மிகவும் கடினமானது ஆத்ம அனுபவம், அதற்கு அடுத்தது குழந்தை வளர்ப்பு. தன்னை யார் என்று உணர்ந்த பிறகே திருமணம் செய்து குழந்தைகளைப் பெற்றுக் கொள்ள வேண்டும்; அப்போதுதான் பெற்றோருக்கு குழந்தைகளை வளர்க்கும் தகுதி இருக்கும்.',
-                        'இயற்கையின் மடியிலிருந்து வரும் ஒவ்வொரு சிசுவும் தூய்மையானது... முற்றிலும் மாசற்றது. அறியாமைச் சூழலில் முட்டாள் பெற்றோர்களால் வளர்க்கப்படும் குழந்தைகள் அப்படியே மாறுவார்கள்.',
-                        'அப்படியானால் அவர்களை எப்படி வளர்ப்பது?',
-                        'சிசு பருவத்திலிருந்தே சரியான தாவர அடிப்படையிலான உணவை வழங்க வேண்டும்... தாய் ஒருபோதும் குழந்தையைத் தனியாக விடக்கூடாது. சிறிய குழந்தைகளுக்கு தியானம் கற்பிக்க வேண்டும்.',
-                        'குழந்தைகளுடன் பழகும்போது பெரியவர்களைப் போலவே மரியாதையுடன் நடத்த வேண்டும். அவர்களின் விருப்பங்களை அறிந்து கொள்ள வேண்டும், நமது விருப்பங்களை அவர்கள் மீது திணிக்கக்கூடாது.',
-                        'குழந்தைகள் அதிக கேள்விகளைக் கேட்பார்கள்; சரியான பதில்கள் தெரிந்தால் கூற வேண்டும், தெரியாவிட்டால் தெரிந்தவர்களிடம் வழிகாட்ட வேண்டும். அவர்களின் ஆர்வத்தை ஒருபோதும் தடுக்கக் கூடாது.'
-                    ]
-                },
-                programs: { 
-                    title: 'எங்கள் பாடத்திட்டம்', 
-                    subtitle: 'வளர்ச்சிக்கான முக்கிய கட்டங்கள்.', 
-                    items: [ 
-                        { 
-                            title: "ஆன்மீக தாய்மை", 
-                            subtitle: "மகப்பேறுக்கு முந்தைய பராமரிப்பு", 
-                            desc: "தெய்வீக சூழலை உருவாக்குதல்.", 
-                            features: ["தியானம்", "கர்ப்ப சம்ஸ்காரம்", "சைவ உணவு", "இசை சிகிச்சை"] 
-                        }, 
-                        { 
-                            title: "சூப்பர் கிட்ஸ்", 
-                            subtitle: "0 – 4 ஆண்டுகள்", 
-                            desc: "மூளை செல்களைத் தூண்டுதல் மற்றும் அறிவு வளர்த்தல்.", 
-                            features: ["பிளாஷ் கார்டுகள்", "வாசனை பொருட்கள்", "தொடு பொருட்கள்", "பல்வேறு ஒலிகள்", "தலையணை பயிற்சிகள்", "இசை", "டாட் கார்டுகள்", "சக்ராஸ் புத்தகம்", "தூக்க பரிந்துரைகள்", "கணித அட்டைகள்", "இயற்கை", "விஷன் கார்டுகள்"] 
-                        } 
-                    ] 
-                }, 
-                events: { 
-                    title: 'வரவிருக்கும் நிகழ்வுகள்', 
-                    subtitle: 'எங்கள் மையங்களில் நடைபெறும் அமர்வுகளில் சேரவும்.', 
-                    viewDetails: 'விவரங்களை காண்க',
-                    shareLink: 'இணைப்பை பகிரவும்',
-                    registerBtn: 'இந்த நிகழ்வுக்கு பதிவு செய்யவும்',
-                    items: [ 
-                        { day: '27', month: 'APR', dateValue: '2026-04-27', title: 'பாலி தாய் & குழந்தை எக்ஸ்போ', loc: 'பாலி', time: 'முழு நாள் (ஏப் 27 - மே 3)', content: 'பாலி எக்ஸ்போவில் தியானம் மற்றும் ஆன்மீக தாய்மையை ஆதரிக்கவும்.', image: 'assets/Events/Event1_date_02082026.jpg' }, 
-                        { day: '16', month: 'APR', dateValue: '2026-04-16', title: 'தியான மாத்ருத்வம் 1 நாள் பயிலரங்கம்', loc: 'சிவசாய் பிரமிட், சூர்யாபேட்டை', time: 'காலை 9:00 - மாலை 5:00', content: 'பண்டைய அறிவியலைக் கற்றுக்கொள்ளுங்கள். புல்லாங்குழல்: லட்சுமி காரு.', image: 'assets/Events/Event2_date_02082026.jpg' }, 
-                        { day: nextWed.day, month: nextWed.month, dateValue: nextWed.dateValue, title: 'தியான மாத்ருத்வம் வாராந்திர வகுப்பு', loc: 'ஆன்லைன்', time: 'இரவு 9:00 - 10:00 IST', content: 'குடும்ப நலனுக்கான வாராந்திர வகுப்பு. ஒவ்வொரு புதன்கிழமையும்.', image: 'assets/Events/Event3_date_02082026.jpg' } 
-                    ] 
-                }, 
-                books: { title: 'புத்தகங்கள் மற்றும் வளங்கள்', subtitle: 'ஆன்மீக பெற்றோர் வளர்ப்பு பற்றிய எங்கள் புத்தகங்களை பதிவிறக்கவும்.', download: 'PDF பதிவிறக்கவும்', items: { superKids: { title: "சூப்பர் கிட்ஸ்", desc: "ஆன்மீக தாய்மை மற்றும் குழந்தை மேம்பாட்டிற்கான ஒரு முழுமையான வழிகாட்டி." }, dhyanaMatruthvam: { title: "தியான மாத்ருத்வம்", desc: "கருவில் உள்ள குழந்தையின் மீது தாயின் தியானத்தின் ஆழமான தாக்கம் பற்றிய தகவல்கள்." }, studentProblems: { title: "திவ்ய மாத்ருத்வம்", desc: "விழிப்புணர்வு பெற்றோர் வளர்ப்பிற்கான நடைமுறை ஆன்மீக தீர்வுகள்." } } },
-                media: { title: 'புகைப்படங்கள் மற்றும் வீடியோக்கள்', subtitle: 'எங்கள் சமீபத்திய நிகழ்வுகள் மற்றும் போதனைகளை ஆராயுங்கள்.', subscribe: 'YouTube இல் குழுசேரவும்', subscribeText: 'தினசரி ஆன்மீக பெற்றோர் தகவல்களுக்கு எங்கள் சமூகத்தில் இணையுங்கள்.', shorts: 'சமீபத்திய குறும்படங்கள்', featured: 'சிறப்பு வீடியோக்கள்', photos: 'நிகழ்வு புகைப்படங்கள்' },
-                mentors: { 
-                    title: 'எங்கள் வழிகாட்டிகள்', 
-                    subtitle: 'குருக்களின் ஞானத்தால் வழிநடத்தப்படுகிறது.', 
-                    items: { 
-                        patriji: { name: "பிரம்மரிஷி சுபாஷ் பத்ரிஜி", role: "நிறுவனர், PSSM", desc: "பிரம்மரிஷி சுபாஷ் பத்ரிஜி பிரமிட் ஆன்மீக சங்கங்கள் இயக்கத்தின் (PSSM) நிறுவனர் ஆவார். உலகெங்கிலும் உள்ள மில்லியன் கணக்கான மக்களுக்கு தியானம் மற்றும் சைவ உணவின் ஆழமான அறிவியலைப் பரப்புவதற்காக அவர் தனது முழு வாழ்க்கையையும் அர்ப்பணித்துள்ளார். மனித வாழ்க்கையின் ஒவ்வொரு அம்சத்திற்கும், குறிப்பாக குழந்தை வளர்ப்புத் துறையில் 'ஆன்மீக உண்மை' அவசியம் என்று பத்ரிஜி வலியுறுத்துகிறார்." }, 
-                        gkSir: { name: "டாக்டர் கோபாலகிருஷ்ணா (GK)", role: "வழிகாட்டி", desc: "டாக்டர் கோபாலகிருஷ்ணா (ஜிகே சார்) ஆன்மீக அறிவியல் மற்றும் முழுமையான ஆரோக்கியத் துறையில் ஒரு தொலைநோக்கு முன்னோடி ஆவார். அவர் 'ஆன்மீக மாத்திரைகள்' கருத்தின் நிறுவனர் ஆவார். ஆரம்பகால குழந்தை பருவ வளர்ச்சியின் முக்கியத்துவத்தை உணர்ந்து, பெற்றோருக்கு ஆரோக்கியமான குழந்தைகளை வளர்க்க உதவும் வகையில் அவர் இன்ஃபான்ட் சித்தா திட்டத்தை (ISP) வென்றெடுத்தார்." }, 
-                        lakshmi: { name: "சதரம் லட்சுமி", role: "முதன்மை இயக்குனர்", desc: "சதரம் லட்சுமி 28 ஆண்டுகளுக்கும் மேலான ஆழமான அனுபவமுள்ள ஒரு அர்ப்பணிப்புள்ள ஆன்மீக ஆலோசகர் ஆவார். விசாகப்பட்டினத்தில் உள்ள பிரம்மரிஷி பிரமிட்டிலிருந்து செயல்படும் அவர், சூப்பர் கிட்ஸ் இயக்கத்தை வழிநடத்துவதில் முக்கிய பங்கு வகித்துள்ளார். அவரது நிபுணத்துவம் தெய்வீக குழந்தை வளர்ப்பு, குடும்ப ஆலோசனை மற்றும் தியானக் கல்வி வரை நீண்டுள்ளது." }, 
-                        santoshi: { name: "சந்தோஷி லட்சுமி", role: "பெற்றோர் பயிற்சியாளர்", desc: "சந்தோஷி லட்சுமி மிகவும் அனுபவம் வாய்ந்த பெற்றோர் பயிற்சியாளர் மற்றும் ஜீனியஸ் கிட்ஸ் பாலர் பள்ளியின் நிறுவனர் ஆவார். அவர் 28 ஆண்டுகளுக்கும் மேலாக ஆனாபானசதி தியானப் பயிற்சி செய்து வருகிறார். 2008 இல் தனது சொந்த குழந்தைக்கு குழந்தை கல்வி நுட்பங்களை வெற்றிகரமாகப் பயன்படுத்தினார்." }, 
-                        sunitha: { name: "சுனிதா கர்ரி", role: "ஆன்மீக பயிற்சியாளர்", desc: "சுனிதா கர்ரி ஆன்மீகத் துறையில் 13 வருட ஈர்க்கக்கூடிய அனுபவத்தைக் கொண்ட ஒரு அர்ப்பணிப்புள்ள ஆன்மீக மாத்திரைகள் பட்டறைப் பயிற்சியாளர் மற்றும் மூத்த ஆலோசகர் ஆவார். அனகாபள்ளியில் உள்ள ஸ்ரீ பார்வதி பிரமிட் மையத்தின் பொறுப்பாளரான அவர், தியான நிகழ்ச்சிகளின் போது ஆன்மாவைப் பாடுவதற்கும் பெயர் பெற்றவர்." }, 
-                        swathi: { name: "சுவாதி ராவ்", role: "உளவியலாளர்", desc: "சுவாதி ராவ் மிகவும் தகுதி வாய்ந்த உளவியலாளர் மற்றும் நடத்தை சிகிச்சையாளர். உளவியலில் முதுகலை மற்றும் குழந்தை வழிகாட்டுதலில் பிஜி டிப்ளமோ பெற்ற அவர், மனித நடத்தை பற்றிய ஆழமான புரிதலைக் கொண்டுவருகிறார். அவரது முக்கிய தத்துவம், 'ஆன்மீக அறிவே வேர், உடல் ஆரோக்கியமே பழம்,' நனவான குழந்தை வளர்ப்புடன் சரியாக ஒத்துப்போகிறது." },
-                        prasanna: { name: "பிரசன்னா லட்சுமி கொண்டூரு", role: "தியான பயிற்சியாளர் மற்றும் ஆலோசகர்", desc: "பிரசன்னா லட்சுமி பி.ஏ (ஈ.பி.பி) பயின்றுள்ளார். தியானப் பயிற்சியில் 20+ ஆண்டுகள் அனுபவம் கொண்டவர். ஒரு சிறந்த தியானப் பயிற்சியாளர், ஊக்கமளிக்கும் பேச்சாளர் மற்றும் குடும்ப ஆலோசகர். மன, உணர்ச்சி மற்றும் ஆன்மீக நல்வாழ்வை நோக்கி வழிகாட்டுவதில் நிபுணத்துவம் பெற்றவர். வெளியீடுகள்: சூப்பர் கிட்ஸ், மாணவர்களின் சிக்கல்களும் தீர்வுகளும், பரிபூர்ண வித்யா, தியான வீட்கோலு." }
-                    } 
-                },
-                contact: { title: 'தொடர்பு கொள்ள', subtitle: 'பதிவு செய்ய படிவத்தை நிரப்பவும்.' },
-                eventGallery: { title: 'நிகழ்வு புகைப்படங்கள்', subtitle: 'எங்கள் பல்வேறு நிகழ்ச்சிகளின் நினைவுகள்.', nextEvent: 'அடுத்த நிகழ்வு', continueToNext: 'அடுத்த நிகழ்வின் புகைப்படங்களைக் காண கிளிக் செய்யவும்' },
-                formLabels: { name: 'உங்கள் பெயர்', email: 'மின்னஞ்சல்', phone: 'தொலைபேசி எண்', message: 'செய்தி', submit: 'அனுப்பு', sending: 'அனுப்பப்படுகிறது...', success: 'வெற்றிகரமாக அனுப்பப்பட்டது!', event: 'நிகழ்வு', date: 'தேதி', time: 'நேரம்', regTitle: 'நிகழ்வு பதிவு', regSub: 'உங்கள் இடத்தை உறுதிப்படுத்தவும்', close: 'மூடு', confirm: 'பதிவை உறுதிப்படுத்தவும்' } 
             }
         };
+
+        // Fill remaining languages to prevent undefined errors
+        TRANSLATIONS.ta = TRANSLATIONS.en;
+        TRANSLATIONS.ml = TRANSLATIONS.en;
+        TRANSLATIONS.kn = TRANSLATIONS.en;
 
         // --- COMPONENTS ---
 
@@ -891,18 +710,12 @@
             const [selectedVideo, setSelectedVideo] = useState(null); // VIDEO MODAL STATE
             const [langMenuOpen, setLangMenuOpen] = useState(false);
             const [youtubeShorts, setYoutubeShorts] = useState([]);
-            
-            // Carousel and Animation States
             const [currentSlide, setCurrentSlide] = useState(0);
-            const [guruStep, setGuruStep] = useState(0);
             
             // Ref for scrolling shorts
             const shortsScrollRef = useRef(null);
 
             const t = useMemo(() => TRANSLATIONS[lang] || TRANSLATIONS.en, [lang]);
-
-            // Array of icons for the First Guru section list
-            const firstGuruIcons = [Star, Heart, Brain, Users, Leaf, Quote, Sparkles];
 
             // Scroll helper for shorts
             const scrollShorts = (direction) => {
@@ -915,31 +728,13 @@
                 }
             };
 
-            // Loop logic for Program Thumbnails
-            const minItems = 12;
-            let displayThumbnails = [...PROGRAM_THUMBNAILS];
-            if(displayThumbnails.length > 0) {
-                while (displayThumbnails.length < minItems) {
-                    displayThumbnails = [...displayThumbnails, ...PROGRAM_THUMBNAILS];
-                }
-            }
-            const marqueeThumbnails = [...displayThumbnails, ...displayThumbnails];
-
-            // Carousel & First Guru Timers Effect
+            // Carousel Effect
             useEffect(() => {
-                const bgTimer = setInterval(() => {
+                const timer = setInterval(() => {
                     setCurrentSlide((prev) => (prev + 1) % HERO_WALLPAPERS.length);
                 }, 5000); 
-
-                const guruTimer = setInterval(() => {
-                    setGuruStep((prev) => (prev + 1) % t.firstGuru.points.length);
-                }, 5000);
-
-                return () => {
-                    clearInterval(bgTimer);
-                    clearInterval(guruTimer);
-                };
-            }, [t.firstGuru.points.length]);
+                return () => clearInterval(timer);
+            }, []);
 
             // --- FETCH LOCAL EVENTS ---
             useEffect(() => {
@@ -1055,7 +850,7 @@
                         <div className="container mx-auto px-4 flex justify-between items-center">
                             
                             {/* BILINGUAL LOGO WITH CLIPPED IMAGE */}
-                            <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection('firstGuru')}>
+                            <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection('home')}>
                                 <img 
                                     src="assets/logo/logo.png" 
                                     alt="Divine Parenting Logo" 
@@ -1063,35 +858,16 @@
                                     onError={(e) => { e.target.onerror = null; e.target.outerHTML = '<div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl font-serif">D</div>'; }}
                                 />
                                 <div className={`flex flex-col leading-tight ${scrolled ? 'text-slate-800' : 'text-white'}`}>
-                                    <span className="text-xl font-bold font-serif tracking-wide">Divine Parenting</span>
-                                    <span className="text-xs font-bold text-amber-500">డివైన్ పేరెంటింగ్</span>
+                                    <span className="text-lg font-bold font-serif tracking-wide">Divine Parenting</span>
+                                    <span className="text-lg font-bold text-amber-500">డివైన్ పేరెంటింగ్</span>
                                 </div>
                             </div>
 
                             <div className="hidden lg:flex gap-6 items-center">
                                 {/* Exclude 'contact' from the mapped links to avoid duplicate */}
-                                {Object.keys(t.nav).filter(k => k !== 'contact').map(key => {
-                                    if (key === 'resources') {
-                                        return (
-                                            <div key={key} className="relative group">
-                                                <button className={`flex items-center gap-1 text-sm font-medium hover:text-amber-500 uppercase py-2 ${scrolled ? 'text-slate-600' : 'text-slate-100'}`}>
-                                                    {t.nav[key]}
-                                                    <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                                                </button>
-                                                <div className="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
-                                                    {Object.keys(t.resourcesMenu).map(subKey => (
-                                                        <button key={subKey} onClick={() => scrollToSection(subKey)} className="w-full text-left px-4 py-3 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-600 font-medium capitalize">
-                                                            {t.resourcesMenu[subKey]}
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        );
-                                    }
-                                    return (
-                                        <button key={key} onClick={() => scrollToSection(key)} className={`text-sm font-medium hover:text-amber-500 uppercase ${scrolled ? 'text-slate-600' : 'text-slate-100'}`}>{t.nav[key]}</button>
-                                    );
-                                })}
+                                {Object.keys(t.nav).filter(k => k !== 'contact').map(key => (
+                                    <button key={key} onClick={() => scrollToSection(key)} className={`text-sm font-medium hover:text-amber-500 uppercase ${scrolled ? 'text-slate-600' : 'text-slate-100'}`}>{t.nav[key]}</button>
+                                ))}
 
                                 <div className="relative ml-2">
                                     <button onClick={() => setLangMenuOpen(!langMenuOpen)}
@@ -1126,26 +902,10 @@
                             </div>
                         </div>
                         {isMenuOpen && (
-                            <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl py-4 flex flex-col px-6 h-screen overflow-y-auto pb-32">
-                                {Object.keys(t.nav).filter(k => k !== 'contact').map(key => {
-                                    if (key === 'resources') {
-                                        return (
-                                            <div key={key} className="py-4 border-b border-slate-50 flex flex-col">
-                                                <span className="text-left text-slate-700 font-medium text-lg mb-3 uppercase">{t.nav[key]}</span>
-                                                <div className="flex flex-col pl-4 space-y-2 border-l-2 border-amber-200 ml-2">
-                                                    {Object.keys(t.resourcesMenu).map(subKey => (
-                                                        <button key={subKey} onClick={() => {scrollToSection(subKey); setIsMenuOpen(false);}} className="text-left text-slate-500 hover:text-amber-600 text-base py-1 uppercase">
-                                                            {t.resourcesMenu[subKey]}
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        );
-                                    }
-                                    return (
-                                        <button key={key} onClick={() => {scrollToSection(key); setIsMenuOpen(false);}} className="py-4 border-b border-slate-50 text-left text-slate-700 font-medium text-lg uppercase">{t.nav[key]}</button>
-                                    );
-                                })}
+                            <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl py-4 flex flex-col px-6">
+                                {Object.keys(t.nav).filter(k => k !== 'contact').map(key => (
+                                    <button key={key} onClick={() => {scrollToSection(key); setIsMenuOpen(false);}} className="py-4 border-b text-left text-slate-700">{t.nav[key]}</button>
+                                ))}
                                 <div className="mt-6">
                                 <div className="text-xs font-bold text-slate-400 uppercase mb-3">Language</div>
                                 <div className="grid grid-cols-2 gap-3">
@@ -1164,77 +924,7 @@
                         )}
                     </nav>
 
-                    {/* --- THE FIRST GURU SECTION (MOVED TO TOP) --- */}
-                    <section id="firstGuru" className="pt-32 pb-24 bg-white border-b border-slate-100 min-h-[90vh] flex items-center">
-                        <div className="container mx-auto px-4">
-                            <SectionTitle title={t.firstGuru.title} subtitle={t.firstGuru.subtitle} />
-                            
-                            <div className="grid lg:grid-cols-2 gap-12 items-start mt-12">
-                                <div className="space-y-3 text-slate-700 text-lg leading-relaxed relative">
-                                    {(() => {
-                                        // Logic to split the 7 points into two pages (3 points + 4 points)
-                                        const guruPage = guruStep < 3 ? 0 : 1;
-                                        const visiblePoints = guruPage === 0 ? t.firstGuru.points.slice(0, 3) : t.firstGuru.points.slice(3);
-                                        const startIndex = guruPage === 0 ? 0 : 3;
-
-                                        return (
-                                            <>
-                                                {/* Fixed minimum height to prevent jumping when switching pages */}
-                                                <div className="min-h-[400px] flex flex-col justify-center space-y-3">
-                                                    {visiblePoints.map((point, localIndex) => {
-                                                        const actualIndex = startIndex + localIndex;
-                                                        const IconComponent = firstGuruIcons[actualIndex % firstGuruIcons.length];
-                                                        const isActive = actualIndex === guruStep;
-                                                        return (
-                                                            <div key={actualIndex} 
-                                                                 onClick={() => setGuruStep(actualIndex)}
-                                                                 className={`flex gap-4 items-start p-4 rounded-2xl transition-all duration-500 cursor-pointer border ${isActive ? 'bg-amber-50 border-amber-200 shadow-md scale-[1.02]' : 'bg-transparent border-transparent opacity-60 hover:opacity-100'}`}>
-                                                                <div className={`shrink-0 mt-1 p-2 rounded-xl transition-colors shadow-sm ${isActive ? 'bg-white text-amber-500' : 'bg-slate-100 text-slate-400'}`}>
-                                                                    <IconComponent size={24} />
-                                                                </div>
-                                                                <p className={`pt-1 ${isActive ? 'font-bold text-slate-900' : ''}`}>{point}</p>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                                
-                                                {/* Pagination Controls */}
-                                                <div className="flex justify-center gap-4 mt-6">
-                                                    <button 
-                                                        onClick={() => setGuruStep(0)} 
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${guruPage === 0 ? 'bg-amber-500 scale-150 shadow-md' : 'bg-slate-300 hover:bg-amber-300'}`} 
-                                                        aria-label="Page 1" 
-                                                    />
-                                                    <button 
-                                                        onClick={() => setGuruStep(3)} 
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${guruPage === 1 ? 'bg-amber-500 scale-150 shadow-md' : 'bg-slate-300 hover:bg-amber-300'}`} 
-                                                        aria-label="Page 2" 
-                                                    />
-                                                </div>
-                                            </>
-                                        );
-                                    })()}
-                                </div>
-
-                                <div className="relative sticky top-32 h-[400px] lg:h-[600px] w-full">
-                                    {FIRST_GURU_IMAGES.map((img, idx) => (
-                                        <img 
-                                            key={idx}
-                                            src={img} 
-                                            alt={`First Guru Point ${idx + 1}`} 
-                                            className={`absolute inset-0 rounded-3xl shadow-2xl w-full h-full object-cover transition-opacity duration-1000 ${idx === (guruStep % 3) ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                                            onError={(e) => { e.target.onerror = null; e.target.src = FIRST_GURU_FALLBACKS[idx]; }}
-                                        />
-                                    ))}
-                                    <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-amber-200 rounded-full opacity-60 filter blur-xl -z-10"></div>
-                                    <div className="absolute -top-6 -right-6 w-40 h-40 bg-rose-200 rounded-full opacity-60 filter blur-xl -z-10"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* --- HERO / WELCOME SECTION (MOVED DOWN) --- */}
-                    <section id="home" className="relative min-h-[80vh] flex items-center justify-center bg-slate-900 text-white text-center px-4 overflow-hidden border-b border-slate-800">
+                    <section id="home" className="relative h-screen flex items-center justify-center bg-slate-900 text-white text-center px-4 overflow-hidden">
                         {HERO_WALLPAPERS.map((imgUrl, index) => (
                             <img 
                                 key={index}
@@ -1244,35 +934,55 @@
                                     e.target.onerror = null; 
                                     e.target.src = HERO_FALLBACKS[index % HERO_FALLBACKS.length];
                                 }}
-                                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+                                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-40' : 'opacity-0'}`}
                                 alt={`Background ${index + 1}`}
                             />
                         ))}
-                        {/* REDUCED OPACITY OVERLAY FOR BETTER VISIBILITY */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 to-slate-900/10 pointer-events-none"></div>
+                        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-900/30 pointer-events-none"></div>
                         
                         <div className="relative z-10 pt-10">
-                            <span className="bg-slate-900/40 backdrop-blur-sm px-4 py-1 rounded-full text-sm text-amber-300 border border-white/30 font-bold shadow-lg">{t.hero.badge}</span>
-                            <h1 className="text-4xl md:text-7xl font-serif font-bold my-6 drop-shadow-xl text-white">
-                                {t.hero.title_1} <br/>
-                                <span className="text-amber-400 drop-shadow-xl">{t.hero.title_2}</span>
-                            </h1>
-                            <p className="text-xl text-white max-w-2xl mx-auto mb-8 font-medium drop-shadow-md bg-slate-900/30 p-4 rounded-xl backdrop-blur-sm border border-white/10">{t.hero.subtitle}</p>
-                            <button onClick={() => scrollToSection('programs')} className="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:-translate-y-1 transition-all">Explore Programs</button>
+                            <span className="bg-white/10 px-4 py-1 rounded-full text-sm text-amber-300 border border-white/20">{t.hero.badge}</span>
+                            <h1 className="text-4xl md:text-7xl font-serif font-bold my-6">{t.hero.title_1} <br/><span className="text-amber-400">{t.hero.title_2}</span></h1>
+                            <p className="text-xl text-slate-200 max-w-2xl mx-auto mb-8">{t.hero.subtitle}</p>
+                            <button onClick={() => scrollToSection('programs')} className="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:-translate-y-1 transition-all">Explore Programs</button>
                         </div>
                     </section>
 
-                    {/* --- MEDITATION BANNER SECTION --- */}
-                    <section id="meditation" className="py-12 bg-slate-50 border-t border-slate-100">
+                    {/* --- THE FIRST GURU SECTION --- */}
+                    <section id="firstGuru" className="py-24 bg-white border-t border-slate-100">
                         <div className="container mx-auto px-4">
-                            <div className="max-w-6xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200 relative group cursor-pointer">
-                                <img 
-                                    src={MEDITATION_BANNERS[lang] || MEDITATION_BANNERS['en']} 
-                                    onError={(e) => { e.target.onerror = null; e.target.src='https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?q=80&w=1935&auto=format&fit=crop'; }}
-                                    className="w-full h-auto md:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105" 
-                                    alt="Meditation Banner" 
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                            <SectionTitle title={t.firstGuru.title} subtitle={t.firstGuru.subtitle} />
+                            
+                            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                                <div className="space-y-6 text-slate-700 text-lg leading-relaxed">
+                                    <div className="flex gap-4 items-start">
+                                        <div className="text-amber-500 shrink-0 mt-1"><Star size={24} /></div>
+                                        <p>{t.firstGuru.para1}</p>
+                                    </div>
+                                    <div className="flex gap-4 items-start">
+                                        <div className="text-amber-500 shrink-0 mt-1"><Heart size={24} /></div>
+                                        <p>{t.firstGuru.para2}</p>
+                                    </div>
+                                    <div className="flex gap-4 items-start">
+                                        <div className="text-amber-500 shrink-0 mt-1"><Brain size={24} /></div>
+                                        <p>{t.firstGuru.para3}</p>
+                                    </div>
+                                    <div className="flex gap-4 items-start">
+                                        <div className="text-amber-500 shrink-0 mt-1"><Users size={24} /></div>
+                                        <p className="font-semibold text-slate-900">{t.firstGuru.para4}</p>
+                                    </div>
+                                </div>
+
+                                <div className="relative">
+                                    <img 
+                                        src="assets/section_1/first_mother.jpg" 
+                                        alt="Mother and Child" 
+                                        className="rounded-3xl shadow-xl w-full h-[400px] object-cover"
+                                        onError={(e) => { e.target.onerror = null; e.target.src = 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040'; }}
+                                    />
+                                    <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-amber-200 rounded-full opacity-60 filter blur-xl -z-10"></div>
+                                    <div className="absolute -top-6 -right-6 w-32 h-32 bg-rose-200 rounded-full opacity-60 filter blur-xl -z-10"></div>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -1280,48 +990,17 @@
                     <section id="programs" className="py-24 bg-slate-50 border-t border-slate-100">
                         <div className="container mx-auto px-4">
                             <SectionTitle title={t.programs.title} subtitle={t.programs.subtitle} />
-                            
-                            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                            <div className="grid md:grid-cols-3 gap-8">
                                 {t.programs.items.map((p, i) => (
-                                    <div key={i} className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all border border-slate-100 flex flex-col h-full">
-                                        <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 mb-6">
-                                            {i === 0 ? <Heart size={32}/> : <Baby size={32}/>}
-                                        </div>
-                                        <h3 className="text-3xl font-serif font-bold mb-2 text-slate-800">{p.title}</h3>
+                                    <div key={i} className="bg-white rounded-2xl p-8 shadow hover:-translate-y-2 transition-all border border-slate-100">
+                                        <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 mb-6"><Heart size={28}/></div>
+                                        <h3 className="text-2xl font-serif font-bold mb-1">{p.title}</h3>
                                         <p className="text-sm font-bold uppercase tracking-wider text-amber-600 mb-4">{p.subtitle}</p>
-                                        <p className="text-slate-600 mb-8">{p.desc}</p>
-                                        
-                                        <div className="mt-auto pt-6 border-t border-slate-100">
-                                            <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm text-slate-600 font-medium">
-                                                {p.features.map((f, j) => (
-                                                    <div key={j} className="flex items-start gap-2">
-                                                        <div className="w-2 h-2 bg-amber-400 rounded-full mt-1.5 shrink-0"/>
-                                                        <span>{f}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
+                                        <p className="text-slate-600 mb-6">{p.desc}</p>
+                                        <ul className="space-y-2 text-sm text-slate-500">{p.features.map((f,j)=><li key={j} className="flex gap-2"><div className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1.5"/>{f}</li>)}</ul>
                                     </div>
                                 ))}
                             </div>
-
-                            {/* Generic Program Thumbnails (Looping Marquee) */}
-                            {PROGRAM_THUMBNAILS.length > 0 && (
-                                <div className="mt-20 max-w-[100vw] mx-auto overflow-hidden relative pb-8">
-                                    <div className="marquee-container gap-6 px-4">
-                                        {marqueeThumbnails.map((thumb, idx) => (
-                                            <div key={idx} className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-md group shrink-0">
-                                                <img 
-                                                    src={thumb} 
-                                                    onError={(e) => { e.target.onerror = null; e.target.src = `https://via.placeholder.com/300x300/f8fafc/cbd5e1?text=Preview`; }} 
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                                                    alt={`Program Preview`} 
-                                                />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </section>
 
@@ -1448,7 +1127,7 @@
 
                             <div className="mb-16">
                                 <h3 className="text-2xl font-bold text-slate-800 mb-8 flex items-center gap-2"><Globe className="text-amber-500"/> {t.media?.featured || TRANSLATIONS.en.media.featured}</h3>
-                                <div className="grid md:grid-cols-3 gap-6">
+                                <div className="grid md:grid-cols-2 gap-8">
                                     {MAIN_VIDEOS.map((vid, idx) => {
                                         const videoId = getYouTubeId(vid);
                                         return (
@@ -1508,14 +1187,15 @@
                                     </button>
                                 </div>
                             </div>
+
                         </div>
                     </section>
                     
-                    {/* --- MENTORS SECTION --- */}
+                    {/* --- MENTORS SECTION (Strict Ordered List) --- */}
                     <section id="mentors" className="py-24 bg-white border-t border-slate-100">
                         <div className="container mx-auto px-4">
                             <SectionTitle title={t.mentors.title} subtitle={t.mentors.subtitle} />
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {MENTORS_DATA.map((mentorData, i) => {
                                     const mentorInfo = t.mentors.items[mentorData.id] || {};
                                     if(!mentorInfo.name) return null; 
