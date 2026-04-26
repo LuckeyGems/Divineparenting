@@ -122,24 +122,11 @@
             "assets/Hero/bg4.jpg"  
         ];
 
-        const HERO_FALLBACKS = [
-            "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop", 
-            "https://images.unsplash.com/photo-1544367563-12123d8966cd?q=80&w=2070&auto=format&fit=crop", 
-            "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040&auto=format&fit=crop", 
-            "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1933&auto=format&fit=crop"
-        ];
-
         // --- NEW: FIRST GURU IMAGES (Looping 3 Images) ---
         const FIRST_GURU_IMAGES = [
             "assets/section_1/first_mother_1.jpg",
             "assets/section_1/first_mother_2.jpg",
             "assets/section_1/first_mother_3.jpg"
-        ];
-
-        const FIRST_GURU_FALLBACKS = [
-            "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2040",
-            "https://images.unsplash.com/photo-1544367563-12123d8966cd?q=80&w=2070",
-            "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?q=80&w=1935"
         ];
 
         // --- MAIN VIDEOS ---
@@ -163,14 +150,10 @@
 
         // --- PROGRAM THUMBNAILS (Displayed below Programs section in a looping Marquee) ---
         const PROGRAM_THUMBNAILS = [
-            'assets/Programs/1.jpg',
-            'assets/Programs/2.jpg',
-            'assets/Programs/3.jpg',
-            'assets/Programs/4.jpg',
-            'assets/Programs/5.jpg',
-            'assets/Programs/6.jpg',
-            'assets/Programs/7.jpg',
-            'assets/Programs/8.jpg'
+            'assets/Programs/thumb1.jpg',
+            'assets/Programs/thumb2.jpg',
+            'assets/Programs/thumb3.jpg',
+            'assets/Programs/thumb4.jpg'
         ];
 
         // --- EVENT PHOTO GALLERIES (Grouped by Event) ---
@@ -230,13 +213,13 @@
         ];
 
         const MENTORS_DATA = [
-            { id: 'patriji', image: 'assets/Gurus/Patriji.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Subhash+Patriji' },
-            { id: 'gkSir', image: 'assets/Gurus/GK.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Dr.+Gopalakrishna' }, 
-            { id: 'lakshmi', image: 'assets/Gurus/slakshmi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=S.+Lakshmi' }, 
-            { id: 'santoshi', image: 'assets/Gurus/santoshi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=K.+Santoshi' }, 
-            { id: 'sunitha', image: 'assets/Gurus/sunitha.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Sunitha+Karri' }, 
-            { id: 'swathi', image: 'assets/Gurus/swathi.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Swathi+Rao' },
-            { id: 'prasanna', image: 'assets/Gurus/Prasanna.jpg', fallbackImage: 'https://via.placeholder.com/400x400?text=Prasanna+Laxmi' }
+            { id: 'patriji', image: 'assets/Gurus/Patriji.jpg' },
+            { id: 'gkSir', image: 'assets/Gurus/GK.jpg' }, 
+            { id: 'lakshmi', image: 'assets/Gurus/slakshmi.jpg' }, 
+            { id: 'santoshi', image: 'assets/Gurus/santoshi.jpg' }, 
+            { id: 'sunitha', image: 'assets/Gurus/sunitha.jpg' }, 
+            { id: 'swathi', image: 'assets/Gurus/swathi.jpg' },
+            { id: 'prasanna', image: 'assets/Gurus/Prasanna.jpg' }
         ];
 
         const getYouTubeId = (url) => {
@@ -261,7 +244,6 @@
         const nextWed = getNextWednesday();
 
         // --- TRANSLATIONS ---
-        // Note: The 'home' key is removed from navigation. 'meditation' is added.
         const TRANSLATIONS = {
             en: {
                 nav: { firstGuru: 'First Guru', meditation: 'Meditation', programs: 'Programs', resources: 'Resources', mentors: 'Mentors', contact: 'Contact' },
@@ -567,8 +549,7 @@
                             {/* Poster Image First */}
                             <div className="bg-slate-100 rounded-xl overflow-hidden mb-6 flex items-center justify-center">
                                 <img 
-                                    src={event.image || 'https://via.placeholder.com/800x600?text=Event+Poster'} 
-                                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/800x600?text=Event+Poster'; }}
+                                    src={event.image} 
                                     alt={event.title} 
                                     className="w-full h-auto max-h-[60vh] object-contain shadow-sm" 
                                 />
@@ -659,7 +640,7 @@
                                         className="cursor-pointer group relative rounded-2xl overflow-hidden shadow-2xl border-2 border-transparent hover:border-amber-500 transition-all duration-300 w-72 aspect-[4/3]"
                                         onClick={() => onSelectGallery(selectedIndex + 1)}
                                     >
-                                        <img src={galleries[selectedIndex + 1].thumbnail} onError={(e) => e.target.src='https://via.placeholder.com/400x300?text=Event+Preview'} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                        <img src={galleries[selectedIndex + 1].thumbnail} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                                         <div className="absolute inset-0 bg-black/60 group-hover:bg-black/30 transition-colors flex items-center justify-center p-4">
                                             <p className="font-bold text-xl text-center text-white">{galleries[selectedIndex + 1].title}</p>
                                         </div>
@@ -670,7 +651,6 @@
                                 <img 
                                     key={photoIdx} 
                                     src={gallery.photos[photoIdx]} 
-                                    onError={(e) => e.target.src='https://via.placeholder.com/1200x800?text=Photo+Unavailable'}
                                     className="max-w-full max-h-full object-contain shadow-2xl rounded-lg" 
                                     alt={`Gallery photo ${photoIdx + 1}`} 
                                 />
@@ -706,8 +686,7 @@
                         {/* Image Section (Left) */}
                         <div className="md:w-1/2 relative h-64 md:h-auto bg-slate-200">
                             <img 
-                                src={mentor.image || mentor.fallbackImage} 
-                                onError={(e) => { e.target.onerror = null; e.target.src = mentor.fallbackImage; }}
+                                src={mentor.image} 
                                 alt={mentor.name} 
                                 className="w-full h-full object-cover object-top" 
                             />
@@ -1010,7 +989,7 @@
                         id: `mock_short_${i}`,
                         title: `Divine Parenting Journey Insight #${i+1}`,
                         videoId: shortId, 
-                        thumbnail: `https://img.youtube.com/vi/${shortId}/maxresdefault.jpg` 
+                        thumbnail: `https://img.youtube.com/vi/${shortId}/hqdefault.jpg` 
                     }));
                     setYoutubeShorts(mockShorts);
                 };
@@ -1064,7 +1043,6 @@
                                     src="assets/logo/logo.png" 
                                     alt="Divine Parenting Logo" 
                                     className="w-12 h-12 object-cover logo-mask"
-                                    onError={(e) => { e.target.onerror = null; e.target.outerHTML = '<div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl font-serif">D</div>'; }}
                                 />
                                 <div className="flex flex-col leading-tight text-slate-800">
                                     <span className="text-xl font-bold font-serif tracking-wide">Divine Parenting</span>
@@ -1227,7 +1205,6 @@
                                             src={img} 
                                             alt={`First Guru Point ${idx + 1}`} 
                                             className={`absolute inset-0 rounded-3xl shadow-2xl w-full h-full object-cover transition-opacity duration-1000 ${idx === (guruStep % 3) ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                                            onError={(e) => { e.target.onerror = null; e.target.src = FIRST_GURU_FALLBACKS[idx]; }}
                                         />
                                     ))}
                                     <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-amber-200 rounded-full opacity-60 filter blur-xl -z-10"></div>
@@ -1243,11 +1220,6 @@
                             <img 
                                 key={index}
                                 src={imgUrl} 
-                                onError={(e) => { 
-                                    console.warn(`Local wallpaper ${imgUrl} not found, using fallback.`);
-                                    e.target.onerror = null; 
-                                    e.target.src = HERO_FALLBACKS[index % HERO_FALLBACKS.length];
-                                }}
                                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
                                 alt={`Background ${index + 1}`}
                             />
@@ -1272,7 +1244,6 @@
                             <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200 relative group cursor-pointer bg-white">
                                 <img 
                                     src={MEDITATION_BANNERS[lang] || MEDITATION_BANNERS['en']} 
-                                    onError={(e) => { e.target.onerror = null; e.target.src='https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?q=80&w=1935&auto=format&fit=crop'; }}
                                     className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]" 
                                     alt="Meditation Banner" 
                                 />
@@ -1317,7 +1288,6 @@
                                             <div key={idx} className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-md group shrink-0">
                                                 <img 
                                                     src={thumb} 
-                                                    onError={(e) => { e.target.onerror = null; e.target.src = `https://via.placeholder.com/300x300/f8fafc/cbd5e1?text=Preview`; }} 
                                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                                                     alt={`Program Preview`} 
                                                 />
@@ -1338,7 +1308,6 @@
                                         <div className="h-48 bg-slate-200 relative cursor-pointer" onClick={() => ev.content && setSelectedEventDetails(ev)}>
                                             <img 
                                                 src={ev.image || `assets/Events/Event${i + 1}_date_02082026.jpg`} 
-                                                onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/800x600?text=Event+Poster'; }}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                                                 alt={ev.title}
                                             />
@@ -1370,7 +1339,6 @@
                                             <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-lg border border-slate-200">
                                                 <img 
                                                     src={gallery.thumbnail} 
-                                                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/600x400?text=Event+Thumb'; }}
                                                     alt={gallery.title} 
                                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                                                 />
@@ -1409,7 +1377,6 @@
                                             <div className="h-64 bg-slate-200 overflow-hidden relative">
                                                  <img 
                                                     src={bookData.image} 
-                                                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/300x400?text=Book+Cover'; }}
                                                     alt={bookInfo.title} 
                                                     className="w-full h-full object-cover" 
                                                  />
@@ -1461,8 +1428,7 @@
                                                  onClick={() => setSelectedVideo(videoId)}>
                                                 {/* High Quality Thumbnail with Fallback */}
                                                 <img 
-                                                    src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} 
-                                                    onError={(e) => { e.target.onerror = null; e.target.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`; }}
+                                                    src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} 
                                                     alt="Featured Video Thumbnail" 
                                                     className="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" 
                                                 />
@@ -1491,8 +1457,7 @@
                                             <div key={idx} className="min-w-[280px] w-[280px] aspect-[9/16] bg-slate-800 rounded-2xl flex-shrink-0 snap-center overflow-hidden relative shadow-lg group/short cursor-pointer"
                                                  onClick={() => setSelectedVideo(short.videoId)}>
                                                 <img 
-                                                    src={`https://img.youtube.com/vi/${short.videoId}/maxresdefault.jpg`} 
-                                                    onError={(e) => { e.target.onerror = null; e.target.src = `https://img.youtube.com/vi/${short.videoId}/hqdefault.jpg`; }} 
+                                                    src={`https://img.youtube.com/vi/${short.videoId}/hqdefault.jpg`} 
                                                     alt="Short Thumbnail" 
                                                     className="w-full h-full object-cover opacity-80 group-hover/short:scale-105 transition-transform duration-500"
                                                 />
@@ -1531,8 +1496,7 @@
                                         >
                                             <div className="h-80 overflow-hidden bg-slate-200">
                                                 <img 
-                                                    src={mentorData.image || mentorData.fallbackImage} 
-                                                    onError={(e) => { e.target.onerror = null; e.target.src = mentorData.fallbackImage; }}
+                                                    src={mentorData.image} 
                                                     alt={mentorInfo.name} 
                                                     className="w-full h-full object-cover transition-transform duration-700 mentor-image object-top" 
                                                 />
@@ -1569,7 +1533,6 @@
 
                     <footer className="bg-slate-900 text-slate-400 py-12 text-center border-t border-slate-800">
                         <p>© 2026 Divine Parenting Academy. All rights reserved.</p>
-                        <p className="text-xs mt-2 text-slate-600">Please replace image placeholders with actual hosted image URLs in the source code.</p>
                     </footer>
 
                     <EventDetailsModal event={selectedEventDetails} onClose={() => setSelectedEventDetails(null)} onRegister={setRegistrationEvent} t={t.events} />
