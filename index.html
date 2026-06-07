@@ -1,3 +1,4 @@
+V2 07Jun2026
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +80,7 @@
             display: none; /* Chrome, Safari and Opera */
         }
 
-        /* Marquee Animation for Images */
+        /* Marquee Animation for Images and Text */
         @keyframes scrollMarquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -90,6 +91,19 @@
             animation: scrollMarquee 40s linear infinite;
         }
         .marquee-container:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scrollTextMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .text-marquee-container {
+            display: flex;
+            width: max-content;
+            animation: scrollTextMarquee 40s linear infinite;
+        }
+        .text-marquee-container:hover {
             animation-play-state: paused;
         }
     </style>
@@ -113,12 +127,15 @@
         const BLOG_DOMAIN = 'blog.divineparenting.in'; 
         const BLOG_LABEL_EVENTS = 'Events';
         const SHOW_EVENT_GALLERY = false; 
+
         
         const SHOW_BALI_PROMO = true; 
+
         const BALI_PROMO_LINKS = {
             whatsapp: "https://chat.whatsapp.com/EpKHH9EOEePHXNGmnWUnxr",
             feedback: "https://docs.google.com/forms/d/e/1FAIpQLSf1M5hSKDmxfdV4qvVG7ywn4-yIbZLxfuv9dFTygdPjZhmQxA/viewform"
         };
+
 
         const HERO_WALLPAPERS = [
             "assets/Hero/bg1.jpg", 
@@ -127,11 +144,13 @@
             "assets/Hero/bg4.jpg"  
         ];
 
+
         const FIRST_GURU_IMAGES = [
             "assets/section_1/first_mother_1.jpg",
             "assets/section_1/first_mother_2.jpg",
             "assets/section_1/first_mother_3.jpg"
         ];
+
 
         const MAIN_VIDEOS = [
             'LwUOxbE3geQ', 
@@ -143,6 +162,7 @@
 
         const YOUTUBE_SHORTS = ['PblbsuRziEc', 'X66al0yMEyk', '6CTFxLb6w5I', '32mELaG-fkA', '7lCnleb-7NM'];
 
+
         const MEDITATION_BANNERS = {
             en: 'assets/Meditation/meditation_en.jpg',
             hi: 'assets/Meditation/meditation_hi.jpg',
@@ -150,7 +170,7 @@
             ta: 'assets/Meditation/meditation_ta.jpg'
         };
 
-        // --- PROGRAM THUMBNAILS (Displayed below Programs section in a looping Marquee) ---
+
         const PROGRAM_THUMBNAILS = [
             'assets/Programs/1.jpg',
             'assets/Programs/2.jpg',
@@ -163,6 +183,7 @@
             'assets/Programs/9.jpg'
         ];
 
+
         const EVENT_GALLERIES = [
             {
                 id: 'event1',
@@ -173,8 +194,28 @@
                     'assets/group_event_photos/Event1/Photo2.jpg',
                     'assets/group_event_photos/Event1/Photo3.jpg'
                 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
         ];
+
 
         const FORM_CONFIG = {
             DEMO_MODE: false, 
@@ -191,6 +232,7 @@
             }
         };
 
+
         const BOOKS_DATA = [
             { id: 'superKids', image: 'assets/Books/Book1_DyanaMatrutvam.jpg', pdfUrl: 'assets/files/Dhyana_Matrutvam_Telugu.pdf' },
             { id: 'dhyanaMatruthvam', image: 'assets/Books/Book2_DivyaMatrutvam.jpg', pdfUrl: 'assets/files/Divya_Matrutvam.pdf' },
@@ -206,7 +248,25 @@
             { id: 'sunitha', image: 'assets/Gurus/sunitha.jpg', type: 'trustee' }, 
             { id: 'swathi', image: 'assets/Gurus/swathi.jpg', type: 'trustee' },
             { id: 'prasanna', image: 'assets/Gurus/Prasanna.jpg', type: 'trustee' },
-            { id: 'amulya', image: 'assets/Gurus/amulya.jpg', type: 'trustee' } 
+            { id: 'amulya', image: 'assets/Gurus/amulya.jpg', type: 'trustee' },
+            { id: 'varalakshmi', image: 'assets/Gurus/varalakshmi.jpg', type: 'trustee' },
+            { id: 'nirmal', image: 'assets/Gurus/nirmal.jpg', type: 'trustee' }
+        ];
+
+        // --- NEW: TEACHERS / SPECIAL GUIDANCE LIST ---
+        const TEACHERS_LIST = [
+            "Dr. Roja",
+            "Dr. Parvathi Devi",
+            "Lavanya Kandipati (Tennessee, USA)",
+            "P. Rohini (Vamshika)",
+            "Praneetha",
+            "Seetha",
+            "Anantha Chandrakala Hema",
+            "Sarika",
+            "Athmananda",
+            "Vijaya",
+            "Gowri",
+            "Saikumari"
         ];
 
         const getYouTubeId = (url) => {
@@ -258,6 +318,7 @@
                             title: "Spiritual Motherhood", 
                             subtitle: "Prenatal Care", 
                             desc: "Creating a divine environment for the unborn child.", 
+
                             features: [
                                 "Daily Meditation", 
                                 "Listening to Music", 
@@ -294,8 +355,14 @@
                     title: 'Our Mentors', 
                     subtitle: 'Guided by the wisdom of masters and experienced spiritual scientists.', 
                     titleTrustees: 'Trustees & Counselors',
+                    teachersTitle: 'Special Guidance & Teachers',
                     items: { 
                         patriji: { name: "Brahmashri Subhash Patriji", role: "Founder, PSSM", desc: "Brahmashri Subhash Patriji is the guiding light and founder of the Pyramid Spiritual Societies Movement (PSSM). He has dedicated his entire life to spreading the profound science of meditation and vegetarianism to millions of people across the globe. Patriji emphasizes that 'Spiritual Truth' is essential for every aspect of human life, particularly in the realm of parenting. His teachings advocate that when parents embrace spiritual practices, they naturally create a highly positive, conscious, and nurturing environment for their children. By integrating Anapanasati breath meditation into daily routines, he believes that parents can awaken the dormant potential within their children, raising them as enlightened, healthy, and happy 'Super Kids' who will positively transform tomorrow's world." }, 
+
+
+
+
+
                         gkSir: { name: "Dr. Gopalakrishna (GK)", role: "Pioneer, Spiritual Tablets", desc: "Dr. Gopalakrishna, affectionately known as GK Sir, is a visionary pioneer in the field of spiritual science and holistic health. He is the esteemed founder of the Spiritual Tablets concept, which integrates ancient spiritual wisdom with modern scientific approaches to achieve perfect health and well-being. Recognizing the critical importance of early childhood development, he championed the Infant Siddha Program (ISP) to help parents cultivate physically, mentally, and spiritually robust children. Through his extensive research, workshops, and compassionate guidance, GK Sir has empowered countless couples to practice conscious conception and mindful parenting. His transformative methodologies emphasize the deep connection between a mother's state of mind and the fetus, making him a true guiding force for the Divine Parenting initiative." }, 
                         newton: { name: "Dr. Newton Kondaveti", role: "Spiritual Scientist", desc: "Dr. Newton Kondaveti is a renowned Spiritual Scientist and founder of Life Research Academy. He is a Master of Past Life Regression and a close associate of Brahmashri Patriji. Through his immense wisdom and workshops, he helps individuals understand the science of the soul, karma, and conscious living, which is fundamental to bringing highly evolved children into the world." },
                         lakshmi: { name: "Sadaram Lakshmi", role: "Principal Director", desc: "Sadaram Lakshmi is the Principal Director and a deeply dedicated spiritual counselor with over 28 years of profound experience in guiding families and individuals. Operating from the Brahmarshi Pyramid in Visakhapatnam, she has been instrumental in spearheading the Super Kids movement and Spiritual Motherhood workshops. Her extensive expertise spans divine parenting, family and relationship counseling, matrimonial guidance, and meditation education. With a Master of Philosophy from Andhra University, she elegantly combines academic knowledge with spiritual wisdom. Lakshmi actively leads trust activities, participates in Anando Brahma service programs, and beautifully plays the flute during meditation sessions. Her unwavering dedication has transformed countless families, helping them integrate meditation into prenatal care to welcome enlightened souls." }, 
@@ -303,7 +370,9 @@
                         sunitha: { name: "Sunitha Karri", role: "Spiritual Tablets Trainer", desc: "Sunitha Karri is a devoted Spiritual Tablets Workshop Trainer, Senior Counselor, and Anandho Brahma Co-ordinator with an impressive 13 years of experience in the spiritual domain. Serving as the in-charge of the Sri Parvathi Pyramid Center in Anakapalli, she is deeply involved in personal growth and consciousness programs. Her diverse skill set includes spiritual teaching, meditation guidance, effective communication, and community trust-building. Sunitha plays a crucial role in the Divine Parenting initiative, actively participating in literature creation, research, and offering online and offline spiritual science services. She is also known for her soulful singing during meditation programs, helping individuals find inner peace and healing. Her dedication makes her a pillar of the spiritual parenting community." }, 
                         swathi: { name: "Swathi Rao", role: "Psychologist & Therapist", desc: "Swathi Rao is a highly qualified Psychologist, Behavior Therapist, and Career and Mental Health Counselor. Holding an MA in Psychology and a PG Diploma in Child and Adolescent Guidance and Counseling, she brings a deep understanding of human behavior to the Divine Parenting academy. As a Senior Counselor for Spiritual Tablets and an Anandho Brahma Cultural Coordinator, she emphasizes that addressing the physical, mental, social, and spiritual dimensions is essential for holistic well-being. Swathi specializes in mental health awareness, relaxation techniques, and enhancing self-esteem. She works actively with the AP Samagra Siksha Project and as a Behavior Therapist for autistic children. Her core philosophy, 'Spiritual Intellect is the Root, Physical Health is the Fruit,' perfectly aligns with conscious parenting." },
                         prasanna: { name: "Prasanna Laxmi Konduru", role: "Meditation Practitioner & Counselor", desc: "Prasanna Laxmi Konduru holds a B.A (EPP) and has over 20+ years of dedicated practice in Meditation. She is a highly experienced Meditation Practitioner, Motivational Speaker, and Family Counselor. She specializes in guiding individuals and families towards mental, emotional, and spiritual well-being. A renowned author, her publications include 'Super Kids (Guidance during Pregnancy)', 'Students Problems & Solutions', 'Paripoorna Vidya', and 'Dhyana Veedkolu'." },
-                        amulya: { name: "Amulya Devarakonda", role: "Technical Supporter & Counselor", desc: "Amulya Devarakonda is a dedicated professional based in the United Kingdom, holding a Master’s degree in Logistics and Supply Chain Management. She currently works as a Technical Supporter, Counselor, and Coordinator in Divine Parenting, where she combines her analytical skills with empathy and strong communication to support individuals effectively. In her role, she provides clear technical assistance, offers thoughtful guidance as a counselor, and ensures smooth coordination across responsibilities. Amulya is passionate about helping people grow and believes in creating a supportive and empowering environment where individuals feel heard, understood, and guided toward positive outcomes." }
+                        amulya: { name: "Amulya Devarakonda", role: "Technical Supporter & Counselor", desc: "Amulya Devarakonda is a dedicated professional based in the United Kingdom, holding a Master’s degree in Logistics and Supply Chain Management. She currently works as a Technical Supporter, Counselor, and Coordinator in Divine Parenting, where she combines her analytical skills with empathy and strong communication to support individuals effectively. In her role, she provides clear technical assistance, offers thoughtful guidance as a counselor, and ensures smooth coordination across responsibilities. Amulya is passionate about helping people grow and believes in creating a supportive and empowering environment where individuals feel heard, understood, and guided toward positive outcomes." },
+                        varalakshmi: { name: "K. Varalakshmi", role: "Parenting Counselor", desc: "K. Varalakshmi resides in Gopalapatnam, Visakhapatnam. She has been an active volunteer for Spiritual Tablets works for the past 10 years, managing administrative works and serving as a general counselor. She is deeply involved as a counselor in the Divine Parenting initiative. With skills in spiritual teaching, community work, meditation guidance, and general health counseling, she actively participates in PSSM programs to promote meditation across various locations." },
+                        nirmal: { name: "Nirmal", role: "Divine Coach", desc: "Nirmal is a dedicated Divine Coach, offering profound spiritual guidance and support to parents and families seeking conscious living through the principles of Divine Parenting." }
                     } 
                 },
                 contact: { title: 'Get in Touch', subtitle: 'Register for events or ask us anything.' },
@@ -336,6 +405,7 @@
                             title: "ధ్యాన మాతృత్వం", 
                             subtitle: "స్త్రీ గర్భం ధరించిన దగ్గర నుండి పాటించ వలసిన నియమాలు", 
                             desc: "దివ్యమైన వాతావరణాన్ని సృష్టించడం.", 
+
                             features: [
                                 "ప్రతి రోజు ధ్యానం చేయడం", 
                                 "సంగీతం వినడం", 
@@ -372,6 +442,7 @@
                     title: 'మా మార్గదర్శకులు', 
                     subtitle: 'మాస్టర్స్ యొక్క జ్ఞానంతో నడిపించబడుతోంది.', 
                     titleTrustees: 'ట్రస్టీలు & కౌన్సెలర్లు',
+                    teachersTitle: 'స్పెషల్ గైడెన్స్ & టీచర్స్',
                     items: { 
                         patriji: { name: "బ్రహ్మర్షి సుభాష్ పత్రీజీ", role: "వ్యవస్థాపకులు, PSSM", desc: "బ్రహ్మశ్రీ సుభాష్ పత్రీజీ పిరమిడ్ ఆధ్యాత్మిక సంఘాల ఉద్యమం (PSSM) వ్యవస్థాపకులు. లక్షలాది మందికి ధ్యానం మరియు శాఖాహారం యొక్క ప్రాముఖ్యతను బోధించడానికి తన జీవితాన్ని అంకితం చేశారు. సంతాన పెంపకంలో కూడా 'ఆధ్యాత్మిక సత్యం' చాలా అవసరమని పత్రీజీ నొక్కి చెబుతారు." }, 
                         gkSir: { name: "డా. గోపాలకృష్ణ (GK)", role: "మార్గదర్శి", desc: "డాక్టర్ గోపాలకృష్ణ (జికె సార్) ఆధ్యాత్మిక శాస్త్రం మరియు సంపూర్ణ ఆరోగ్య రంగంలో ఒక అద్భుతమైన మార్గదర్శకులు. పురాతన ఆధ్యాత్మిక జ్ఞానాన్ని ఆధునిక శాస్త్రీయ విధానాలతో ఏకీకృతం చేసే స్పిరిచువల్ టాబ్లెట్స్ భావన వ్యవస్థాపకుడు." }, 
@@ -381,7 +452,9 @@
                         sunitha: { name: "సునీత కర్రి", role: "స్పిరిచువల్ ట్రైనర్", desc: "సునీత కర్రి గారు ఆధ్యాత్మిక రంగంలో 13 ఏళ్ల అనుభవం ఉన్న స్పిరిచువల్ టాబ్లెట్స్ వర్క్‌షాప్ ట్రైనర్, సీనియర్ కౌన్సెలర్ మరియు ఆనందో బ్రహ్మ కోఆర్డినేటర్. అనకాపల్లిలోని శ్రీ పార్వతి పిరమిడ్ సెంటర్ ఇన్‌ఛార్జ్‌గా, ఆమె వ్యక్తిగత ఎదుగుదల కార్యక్రమాల్లో చురుకుగా పాల్గొంటున్నారు." }, 
                         swathi: { name: "స్వాతి రావు", role: "సైకాలజిస్ట్", desc: "స్వాతి రావు గారు సైకాలజిస్ట్, బిహేవియరల్ థెరపిస్ట్ మరియు మెంటల్ హెల్త్ కౌన్సెలర్. సైకాలజీలో ఎం.ఏ మరియు చైల్డ్ గైడెన్స్‌లో పీజీ డిప్లొమా చేసిన ఆమె, డివైన్ పేరెంటింగ్ అకాడమీలో మానవ ప్రవర్తన గురించి లోతైన అవగాహనను తీసుకువచ్చారు." },
                         prasanna: { name: "ప్రసన్న లక్ష్మి కొండూరు", role: "మెడిటేషన్ ప్రాక్టీషనర్ & కౌన్సెలర్", desc: "ప్రసన్న లక్ష్మి గారు బి.ఏ (ఈ.పి.పి) చదివారు. ఆమెకు 20 ఏళ్లకు పైగా ధ్యాన సాధనలో అపారమైన అనుభవం ఉంది. మోటివేషనల్ స్పీకర్ మరియు ఫ్యామిలీ కౌన్సెలర్‌గా, మానసిక, భావోద్వేగ మరియు ఆధ్యాత్మిక శ్రేయస్సు వైపు మార్గనిర్దేశం చేయడంలో ఆమె నిపుణులు. ఆమె ప్రచురణలలో 'సూపర్ కిడ్స్', 'విద్యార్థుల సమస్యలు - పరిష్కారాలు', 'పరిపూర్ణ విద్య', మరియు 'ధ్యాన వీడ్కోలు' ఉన్నాయి." },
-                        amulya: { name: "అమూల్య దేవరకొండ", role: "టెక్నికల్ సపోర్టర్ & కౌన్సెలర్", desc: "అమూల్య దేవరకొండ యునైటెడ్ కింగ్‌డమ్‌లో (UK) స్థిరపడిన నిపుణురాలు. ఆమె లాజిస్టిక్స్ మరియు సప్లై చైన్ మేనేజ్‌మెంట్‌లో మాస్టర్స్ డిగ్రీ పూర్తి చేశారు. ప్రస్తుతం డివైన్ పేరెంటింగ్‌లో టెక్నికల్ సపోర్టర్, కౌన్సెలర్ మరియు కోఆర్డినేటర్‌గా సేవలు అందిస్తున్నారు. ఆమె తన విశ్లేషణాత్మక నైపుణ్యాలను, కరుణను మరియు కమ్యూనికేషన్‌ను ఉపయోగించి అందరికీ మార్గనిర్దేశం చేస్తున్నారు. ఆమెకు ప్రజల ఎదుగుదలకు సహాయపడటం అంటే చాలా ఇష్టం." }
+                        amulya: { name: "అమూల్య దేవరకొండ", role: "టెక్నికల్ సపోర్టర్ & కౌన్సెలర్", desc: "అమూల్య దేవరకొండ యునైటెడ్ కింగ్‌డమ్‌లో (UK) స్థిరపడిన నిపుణురాలు. ఆమె లాజిస్టిక్స్ మరియు సప్లై చైన్ మేనేజ్‌మెంట్‌లో మాస్టర్స్ డిగ్రీ పూర్తి చేశారు. ప్రస్తుతం డివైన్ పేరెంటింగ్‌లో టెక్నికల్ సపోర్టర్, కౌన్సెలర్ మరియు కోఆర్డినేటర్‌గా సేవలు అందిస్తున్నారు. ఆమె తన విశ్లేషణాత్మక నైపుణ్యాలను, కరుణను మరియు కమ్యూనికేషన్‌ను ఉపయోగించి అందరికీ మార్గనిర్దేశం చేస్తున్నారు. ఆమెకు ప్రజల ఎదుగుదలకు సహాయపడటం అంటే చాలా ఇష్టం." },
+                        varalakshmi: { name: "కె. వరలక్ష్మి", role: "పేరెంటింగ్ కౌన్సెలర్", desc: "కె. వరలక్ష్మి గారు విశాఖపట్నం గోపాలపట్నంలో నివసిస్తున్నారు. గత 10 ఏళ్లుగా స్పిరిచువల్ టాబ్లెట్స్ వాలంటీర్‌గా, పరిపాలనా పనులతో పాటు జనరల్ కౌన్సెలర్‌గా సేవలందిస్తున్నారు. డివైన్ పేరెంటింగ్‌లో కౌన్సెలర్‌గా చురుకైన పాత్ర పోషిస్తున్నారు. ఆధ్యాత్మిక బోధన, మెడిటేషన్ గైడెన్స్ మరియు కమ్యూనిటీ సేవల ద్వారా ధ్యానాన్ని అందరికీ చేరువ చేయడానికి విశేష కృషి చేస్తున్నారు." },
+                        nirmal: { name: "నిర్మల్", role: "డివైన్ కోచ్", desc: "నిర్మల్ గారు డివైన్ కోచ్‌గా సేవలు అందిస్తున్నారు. డివైన్ పేరెంటింగ్ విధానాల ద్వారా స్పృహతో కూడిన జీవితాన్ని గడపాలనుకునే తల్లిదండ్రులకు మరియు కుటుంబాలకు ఆమె అత్యుత్తమ ఆధ్యాత్మిక మార్గదర్శకత్వం ఇస్తారు." }
                     } 
                 },
                 contact: { title: 'మమ్మల్ని సంప్రదించండి', subtitle: 'నమోదు చేసుకోవడానికి లేదా ప్రశ్నలు అడగడానికి ఫారమ్‌ను పూరించండి.' },
@@ -414,6 +487,7 @@
                             title: "आध्यात्मिक मातृत्व", 
                             subtitle: "प्रसव पूर्व देखभाल", 
                             desc: "अजन्मे बच्चे के लिए एक दिव्य वातावरण बनाना।", 
+
                             features: [
                                 "प्रतिदिन ध्यान करना", 
                                 "संगीत सुनना", 
@@ -450,6 +524,7 @@
                     title: 'हमारे मार्गदर्शक', 
                     subtitle: 'गुरुओं के ज्ञान द्वारा निर्देशित।', 
                     titleTrustees: 'ट्रस्टी और काउंसलर',
+                    teachersTitle: 'विशेष मार्गदर्शन और शिक्षक',
                     items: { 
                         patriji: { name: "ब्रह्मर्षि सुभाष पत्रीजी", role: "संस्थापक, PSSM", desc: "ब्रह्मर्षि सुभाष पत्रीजी पिरामिड स्पिरिचुअल सोसाइटीज मूवमेंट (PSSM) के संस्थापक हैं। उन्होंने दुनिया भर के लाखों लोगों को ध्यान और शाकाहार का गहरा विज्ञान सिखाने के लिए अपना पूरा जीवन समर्पित कर दिया है। पत्रीजी इस बात पर जोर देते हैं कि 'आध्यात्मिक सत्य' मानव जीवन के हर पहलू के लिए आवश्यक है।" }, 
                         gkSir: { name: "डॉ. गोपालकृष्ण (GK)", role: "मार्गदर्शक", desc: "डॉ. गोपालकृष्ण (जीके सर) आध्यात्मिक विज्ञान और समग्र स्वास्थ्य के क्षेत्र में एक दूरदर्शी अग्रणी हैं। वह 'स्पिरिचुअल टैबलेट्स' अवधारणा के संस्थापक हैं। बचपन के शुरुआती विकास के महत्वपूर्ण महत्व को पहचानते हुए, उन्होंने माता-पिता को स्वस्थ बच्चे पैदा करने में मदद करने के लिए इन्फेंट सिद्ध प्रोग्राम (ISP) का समर्थन किया।" }, 
@@ -459,7 +534,9 @@
                         sunitha: { name: "सुनीता कर्री", role: "स्पिरिचुअल ट्रेनर", desc: "सुनीता कर्री आध्यात्मिक क्षेत्र में 13 वर्षों के प्रभावशाली अनुभव के साथ एक समर्पित आध्यात्मिक टैबलेट कार्यशाला प्रशिक्षक और वरिष्ठ परामर्शदाता हैं। वह अनाकापल्ली में श्री पार्वती पिरामिड केंद्र की प्रभारी हैं। वह ध्यान कार्यक्रमों के दौरान अपने भावपूर्ण गायन के लिए भी जानी जाती हैं।" }, 
                         swathi: { name: "स्वाति राव", role: "मनोवैज्ञानिक", desc: "स्वाति राव एक उच्च योग्य मनोवैज्ञानिक और व्यवहार चिकित्सक हैं। मनोविज्ञान में एमए और बाल एवं किशोर मार्गदर्शन में पीजी डिप्लोमा के साथ, वह मानव व्यवहार की गहरी समझ लाती हैं। उनका मुख्य दर्शन, 'आध्यात्मिक बुद्धि जड़ है, शारीरिक स्वास्थ्य फल है,' जागरूक पेरेंटिंग के साथ पूरी तरह से मेल खाता है।" },
                         prasanna: { name: "प्रसन्ना लक्ष्मी कोंडूरु", role: "ध्यान अभ्यासी और परामर्शदाता", desc: "प्रसन्ना लक्ष्मी जी ने बी.ए (ई.पी.पी) किया है और उन्हें ध्यान अभ्यास में 20+ वर्षों का अनुभव है। वह एक अनुभवी ध्यान अभ्यासी, प्रेरक वक्ता और पारिवारिक परामर्शदाता हैं। वह मानसिक, भावनात्मक और आध्यात्मिक भलाई की दिशा में मार्गदर्शन करने में विशेषज्ञ हैं। उनके प्रकाशनों में 'सुपर किड्स', 'छात्रों की समस्याएं और समाधान', 'परिपूर्ण विद्या' और 'ध्यान वीडकोलू' शामिल हैं। वह सभी प्रकार की काउंसलिंग, ध्यान कार्यशालाएं और प्रेरक सत्र प्रदान करती हैं।" },
-                        amulya: { name: "अमूल्या देवरकोंडा", role: "तकनीकी समर्थक और काउंसलर", desc: "अमूल्या देवरकोंडा यूनाइटेड किंगडम में स्थित एक समर्पित पेशेवर हैं। उन्होंने लॉजिस्टिक्स और सप्लाई चेन मैनेजमेंट में मास्टर डिग्री हासिल की है। वर्तमान में डिवाइन पेरेंटिंग में काम कर रही हैं, जहाँ वह लोगों को सही मार्गदर्शन और समर्थन देती हैं।" }
+                        amulya: { name: "अमूल्या देवरकोंडा", role: "तकनीकी समर्थक और काउंसलर", desc: "अमूल्या देवरकोंडा यूनाइटेड किंगडम में स्थित एक समर्पित पेशेवर हैं। उन्होंने लॉजिस्टिक्स और सप्लाई चेन मैनेजमेंट में मास्टर डिग्री हासिल की है। वर्तमान में डिवाइन पेरेंटिंग में काम कर रही हैं, जहाँ वह लोगों को सही मार्गदर्शन और समर्थन देती हैं।" },
+                        varalakshmi: { name: "के. वरलक्ष्मी", role: "पेरेंटिंग काउंसलर", desc: "के. वरलक्ष्मी विशाखापत्तनम में रहती हैं। वह पिछले 10 वर्षों से आध्यात्मिक टैबलेट के कार्यों के लिए एक सक्रिय स्वयंसेवक हैं, प्रशासनिक कार्यों का प्रबंधन करती हैं और एक सामान्य सलाहकार के रूप में कार्य करती हैं।" },
+                        nirmal: { name: "निर्मल", role: "डिवाइन कोच", desc: "निर्मल एक समर्पित डिवाइन कोच हैं, जो आध्यात्मिक जीवन जीने के इच्छुक माता-पिता और परिवारों को मार्गदर्शन प्रदान करती हैं।" }
                     } 
                 },
                 contact: { title: 'संपर्क करें', subtitle: 'पंजीकरण करने के लिए फॉर्म भरें।' },
@@ -492,6 +569,7 @@
                             title: "ஆன்மீக தாய்மை", 
                             subtitle: "மகப்பேறுக்கு முந்தைய பராமரிப்பு", 
                             desc: "தெய்வீக சூழலை உருவாக்குதல்.", 
+
                             features: [
                                 "தினசரி தியானம்", 
                                 "இசை கேட்டல்", 
@@ -528,6 +606,7 @@
                     title: 'எங்கள் வழிகாட்டிகள்', 
                     subtitle: 'குருக்களின் ஞானத்தால் வழிநடத்தப்படுகிறது.', 
                     titleTrustees: 'அறங்காவலர்கள் & ஆலோசகர்கள்',
+                    teachersTitle: 'சிறப்பு வழிகாட்டுதல் & ஆசிரியர்கள்',
                     items: { 
                         patriji: { name: "பிரம்மரிஷி சுபாஷ் பத்ரிஜி", role: "நிறுவனர், PSSM", desc: "பிரம்மரிஷி சுபாஷ் பத்ரிஜி பிரமிட் ஆன்மீக சங்கங்கள் இயக்கத்தின் (PSSM) நிறுவனர் ஆவார். உலகெங்கிலும் உள்ள மில்லியன் கணக்கான மக்களுக்கு தியானம் மற்றும் சைவ உணவின் ஆழமான அறிவியலைப் பரப்புவதற்காக அவர் தனது முழு வாழ்க்கையையும் அர்ப்பணித்துள்ளார். மனித வாழ்க்கையின் ஒவ்வொரு அம்சத்திற்கும், குறிப்பாக குழந்தை வளர்ப்புத் துறையில் 'ஆன்மீக உண்மை' அவசியம் என்று பத்ரிஜி வலியுறுத்துகிறார்." }, 
                         gkSir: { name: "டாக்டர் கோபாலகிருஷ்ணா (GK)", role: "வழிகாட்டி", desc: "டாக்டர் கோபாலகிருஷ்ணா (ஜிகே சார்) ஆன்மீக அறிவியல் மற்றும் முழுமையான ஆரோக்கியத் துறையில் ஒரு தொலைநோக்கு முன்னோடி ஆவார். அவர் 'ஆன்மீக மாத்திரைகள்' கருத்தின் நிறுவனர் ஆவார். ஆரம்பகால குழந்தை பருவ வளர்ச்சியின் முக்கியத்துவத்தை உணர்ந்து, பெற்றோருக்கு ஆரோக்கியமான குழந்தைகளை வளர்க்க உதவும் வகையில் அவர் இன்ஃபான்ட் சித்தா திட்டத்தை (ISP) வென்றெடுத்தார்." }, 
@@ -537,7 +616,9 @@
                         sunitha: { name: "சுனிதா கர்ரி", role: "ஆன்மீக பயிற்சியாளர்", desc: "சுனிதா கர்ரி ஆன்மீகத் துறையில் 13 வருட ஈர்க்கக்கூடிய அனுபவத்தைக் கொண்ட ஒரு அர்ப்பணிப்புள்ள ஆன்மீக மாத்திரைகள் பட்டறைப் பயிற்சியாளர் மற்றும் மூத்த ஆலோசகர் ஆவார். அனகாபள்ளியில் உள்ள ஸ்ரீ பார்வதி பிரமிட் மையத்தின் பொறுப்பாளரான அவர், தியான நிகழ்ச்சிகளின் போது ஆன்மாவைப் பாடுவதற்கும் பெயர் பெற்றவர்." }, 
                         swathi: { name: "சுவாதி ராவ்", role: "உளவியலாளர்", desc: "சுவாதி ராவ் மிகவும் தகுதி வாய்ந்த உளவியலாளர் மற்றும் நடத்தை சிகிச்சையாளர். உளவியலில் முதுகலை மற்றும் குழந்தை வழிகாட்டுதலில் பிஜி டிப்ளமோ பெற்ற அவர், மனித நடத்தை பற்றிய ஆழமான புரிதலைக் கொண்டுவருகிறார். அவரது முக்கிய தத்துவம், 'ஆன்மீக அறிவே வேர், உடல் ஆரோக்கியமே பழம்,' நனவான குழந்தை வளர்ப்புடன் சரியாக ஒத்துப்போகிறது." },
                         prasanna: { name: "பிரசன்னா லட்சுமி கொண்டூரு", role: "தியான பயிற்சியாளர் மற்றும் ஆலோசகர்", desc: "பிரசன்னா லட்சுமி பி.ஏ (ஈ.பி.பி) பயின்றுள்ளார். தியானப் பயிற்சியில் 20+ ஆண்டுகள் அனுபவம் கொண்டவர். ஒரு சிறந்த தியானப் பயிற்சியாளர், ஊக்கமளிக்கும் பேச்சாளர் மற்றும் குடும்ப ஆலோசகர். மன, உணர்ச்சி மற்றும் ஆன்மீக நல்வாழ்வை நோக்கி வழிகாட்டுவதில் நிபுணத்துவம் பெற்றவர். வெளியீடுகள்: சூப்பர் கிட்ஸ், மாணவர்களின் சிக்கல்களும் தீர்வுகளும், பரிபூர்ண வித்யா, தியான வீட்கோலு." },
-                        amulya: { name: "அமுல்யா தேவரகொண்டா", role: "தொழில்நுட்ப ஆதரவாளர் & ஆலோசகர்", desc: "அமுல்யா தேவரகொண்டா இங்கிலாந்தை தளமாகக் கொண்ட ஒரு அர்ப்பணிப்புள்ள நிபுணர். லாஜிஸ்டிக்ஸ் மற்றும் சப்ளை செயின் மேனேஜ்மென்ட்டில் முதுகலை பட்டம் பெற்றவர். தற்போது டிவைன் பேரன்டிங்கில் தொழில்நுட்ப ஆதரவாளராகவும், ஆலோசகராகவும், ஒருங்கிணைப்பாளராகவும் பணிபுரிகிறார்." }
+                        amulya: { name: "அமுல்யா தேவரகொண்டா", role: "தொழில்நுட்ப ஆதரவாளர் & ஆலோசகர்", desc: "அமுல்யா தேவரகொண்டா இங்கிலாந்தை தளமாகக் கொண்ட ஒரு அர்ப்பணிப்புள்ள நிபுணர். லாஜிஸ்டிக்ஸ் மற்றும் சப்ளை செயின் மேனேஜ்மென்ட்டில் முதுகலை பட்டம் பெற்றவர். தற்போது டிவைன் பேரன்டிங்கில் தொழில்நுட்ப ஆதரவாளராகவும், ஆலோசகராகவும், ஒருங்கிணைப்பாளராகவும் பணிபுரிகிறார்." },
+                        varalakshmi: { name: "கே. வரலட்சுமி", role: "பெற்றோர் ஆலோசகர்", desc: "கே. வரலட்சுமி விசாகப்பட்டினத்தில் வசிக்கிறார். அவர் கடந்த 10 ஆண்டுகளாக ஆன்மீக மாத்திரைகள் பணிகளுக்கு ஒரு செயலில் உள்ள தன்னார்வலராக இருந்து வருகிறார்." },
+                        nirmal: { name: "நிர்மல்", role: "டிவைன் கோச்", desc: "நிர்மல் ஒரு அர்ப்பணிப்புள்ள டிவைன் கோச் ஆவார்." }
                     } 
                 },
                 contact: { title: 'தொடர்பு கொள்ள', subtitle: 'பதிவு செய்ய படிவத்தை நிரப்பவும்.' },
@@ -783,6 +864,7 @@
 
             if (type === 'register' && !isOpen) return null;
             
+            // Ensure labels fallback safely to avoid 'undefined' errors
             const labels = formLabels || TRANSLATIONS.en.formLabels;
 
             const today = new Date();
@@ -1026,7 +1108,7 @@
                         id: `mock_short_${i}`,
                         title: `Divine Parenting Journey Insight #${i+1}`,
                         videoId: shortId, 
-                        thumbnail: `https://img.youtube.com/vi/${shortId}/hqdefault.jpg` 
+                        thumbnail: `https://img.youtube.com/vi/${shortId}/maxresdefault.jpg` 
                     }));
                     setYoutubeShorts(mockShorts);
                 };
@@ -1069,6 +1151,7 @@
                 { code: 'kn', name: 'Kannada', label: 'ಕನ್ನಡ' }
             ];
 
+            // Separate founders and trustees for correct rendering
             const mainMentors = MENTORS_DATA.filter(m => m.type === 'mentor');
             const trustees = MENTORS_DATA.filter(m => m.type === 'trustee');
 
@@ -1077,6 +1160,7 @@
                     <nav className={`fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm ${scrolled ? 'shadow-md py-2' : 'shadow-sm py-4'}`}>
                         <div className="container mx-auto px-4 flex justify-between items-center">
                             
+                            {/* BILINGUAL LOGO WITH CLIPPED IMAGE */}
                             <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection('firstGuru')}>
                                 <img 
                                     src="assets/logo/logo.png" 
@@ -1091,6 +1175,7 @@
                             </div>
 
                             <div className="hidden lg:flex gap-6 items-center">
+                                {/* Exclude 'contact' from the mapped links to avoid duplicate */}
                                 {Object.keys(t.nav).filter(k => k !== 'contact').map(key => {
                                     if (key === 'resources') {
                                         return (
@@ -1185,7 +1270,66 @@
                         )}
                     </nav>
 
-                    {/* --- THE FIRST GURU SECTION --- */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {/* --- THE FIRST GURU SECTION (MOVED TO TOP) --- */}
                     <section id="firstGuru" className="pt-32 pb-24 bg-white border-b border-slate-100 min-h-[90vh] flex items-center">
                         <div className="container mx-auto px-4">
                             <SectionTitle title={t.firstGuru.title} subtitle={t.firstGuru.subtitle} />
@@ -1193,12 +1337,14 @@
                             <div className="grid lg:grid-cols-2 gap-12 items-start mt-12">
                                 <div className="space-y-3 text-slate-700 text-lg leading-relaxed relative">
                                     {(() => {
+                                        // Logic to split the 7 points into two pages (3 points + 4 points)
                                         const guruPage = guruStep < 3 ? 0 : 1;
                                         const visiblePoints = guruPage === 0 ? t.firstGuru.points.slice(0, 3) : t.firstGuru.points.slice(3);
                                         const startIndex = guruPage === 0 ? 0 : 3;
 
                                         return (
                                             <>
+                                                {/* Fixed minimum height to prevent jumping when switching pages */}
                                                 <div className="min-h-[400px] flex flex-col justify-center space-y-3">
                                                     {visiblePoints.map((point, localIndex) => {
                                                         const actualIndex = startIndex + localIndex;
@@ -1217,6 +1363,7 @@
                                                     })}
                                                 </div>
                                                 
+                                                {/* Pagination Controls */}
                                                 <div className="flex justify-center gap-4 mt-6">
                                                     <button 
                                                         onClick={() => setGuruStep(0)} 
@@ -1262,6 +1409,7 @@
                                 alt={`Background ${index + 1}`}
                             />
                         ))}
+                        {/* REDUCED OPACITY OVERLAY FOR BETTER VISIBILITY */}
                         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 to-slate-900/10 pointer-events-none"></div>
                         
                         <div className="relative z-10 pt-10">
@@ -1599,6 +1747,32 @@
                                     );
                                 })}
                             </div>
+
+                            {/* --- TEACHERS MARQUEE (BELOW TRUSTEES) --- */}
+                            <div className="mt-20 pt-16 border-t border-slate-100 overflow-hidden relative">
+                                <h3 className="text-2xl font-serif font-bold text-slate-700 text-center mb-8">{t.mentors.teachersTitle || "Teachers & Special Guidance"}</h3>
+                                <div className="text-marquee-container flex gap-12 text-slate-600 font-semibold text-lg items-center px-4">
+                                    {TEACHERS_LIST.map((teacher, idx) => (
+                                        <React.Fragment key={idx}>
+                                            <span className="flex items-center gap-2 text-slate-800">
+                                                <Star className="text-amber-400 w-4 h-4" /> {teacher}
+                                            </span>
+                                            {idx < TEACHERS_LIST.length - 1 && <span className="text-slate-300">•</span>}
+                                        </React.Fragment>
+                                    ))}
+                                    {/* Duplicate for infinite loop effect */}
+                                    <span className="text-slate-300">•</span>
+                                    {TEACHERS_LIST.map((teacher, idx) => (
+                                        <React.Fragment key={`dup-${idx}`}>
+                                            <span className="flex items-center gap-2 text-slate-800">
+                                                <Star className="text-amber-400 w-4 h-4" /> {teacher}
+                                            </span>
+                                            {idx < TEACHERS_LIST.length - 1 && <span className="text-slate-300">•</span>}
+                                        </React.Fragment>
+                                    ))}
+                                </div>
+                            </div>
+
                         </div>
                     </section>
 
